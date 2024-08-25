@@ -8,7 +8,7 @@
 #pragma once
 
 #include <memory>
-
+#include <string>
 #include "Vibrator.h"
 #include "BCHeadphone.h"
 #include "ServoMotor.h"
@@ -24,17 +24,14 @@ class ESP_32
 
 public:
     ESP_32();
-    ::MaskUP::Enum::State m_state;
+    std::string getDevicename();
+    void setDevicename(const std::string &inDeviceName);
+
 
 private:
+    std::string m_deviceName;
+    ::MaskUP::Enum::State m_state;
 
-    std::unique_ptr<Vibrator> m_pLeftVibrator;
-    std::unique_ptr<Vibrator> m_pRightVibrator;
-
-    std::unique_ptr<BCHeadphone> m_pLeftHeadphone;
-    std::unique_ptr<BCHeadphone> m_pRightHeadphone;
-
-    std::unique_ptr<ServoMotor> m_pServoMotor;
 
 
 };

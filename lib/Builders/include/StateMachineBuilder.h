@@ -17,8 +17,8 @@
 #include <memory>
 
 namespace MaskUP
-namespace Build
 {
+namespace Build
 {
 class StateMachineBuilder : public IBuilder <::MaskUP::StateMachine::StateMachine>
 {

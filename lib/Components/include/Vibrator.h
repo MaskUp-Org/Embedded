@@ -9,8 +9,8 @@
 #include "IComponent.h"
 
 namespace MaskUP
-namespace Component
 {
+namespace Component
 {
 
 class Vibrator : public IComponent

@@ -15,8 +15,8 @@
 #include <memory>
 
 namespace MaskUP
-namespace Build
 {
+namespace Build
 {
 class VibratorBuilder : public IBuilder <::MaskUP::Component::Vibrator>
 {

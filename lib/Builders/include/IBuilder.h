@@ -10,8 +10,8 @@
 #include <memory>
 
 namespace MaskUP
-namespace Build
 {
+namespace Build
 {
 
 template <typename T>
@@ -32,6 +32,10 @@ public:
      * @return std::unique_ptr<T> Object created
      */
     virtual std::unique_ptr<T> build() = 0;
+
+    bool changeState (const ::MaskUP::Enum::State inState);
+
+    ::MaskUP::Enum::State getState ();
 };
 
 }

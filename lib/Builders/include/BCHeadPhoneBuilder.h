@@ -14,8 +14,8 @@
 #include <memory>
 
 namespace MaskUP
-namespace Build
 {
+namespace Build
 {
 class BCHeadphoneBuilder : public IBuilder <::MaskUP::Component::BCHeadphone>
 {

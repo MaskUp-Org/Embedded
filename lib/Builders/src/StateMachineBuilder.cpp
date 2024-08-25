@@ -7,9 +7,13 @@
 
 #include "StateMachineBuilder.h"
 
-namespace MaskUP::Build
+namespace MaskUP
+{
+namespace Build
 {
 
 
 
+
+}
 }

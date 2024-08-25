@@ -11,8 +11,11 @@ namespace MaskUP::Component
 {
 
 ESP_32::ESP_32() {
-
 }
 
+std::string ESP_32::getDeviceName ()
+{
+    return m_deviceName;
+}
 
 }
