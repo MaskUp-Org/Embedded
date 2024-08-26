@@ -9,10 +9,8 @@
 
 #include <memory>
 #include <string>
-#include "Vibrator.h"
-#include "BCHeadphone.h"
-#include "ServoMotor.h"
 #include "State.hpp"
+#include "VersionManager.h"
 
 namespace MaskUP
 {
@@ -30,10 +28,8 @@ public:
 
 private:
     std::string m_deviceName;
+    VersionManager m_version;
     ::MaskUP::Enum::State m_state;
-
-
-
 };
 
 }

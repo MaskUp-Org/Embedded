@@ -7,7 +7,9 @@
 #include "JsonReader.h"
 #include <Arduino.h>
 
-namespace MaskUP::Tools
+namespace MaskUP
+{
+namespace Tools
 {
 
 void writeLog()
@@ -33,4 +35,5 @@ JsonDocument JsonReader::load()
     }
     return m_document;
 }
+} // namespace MaskUP::Tools
 } // namespace MaskUP::Tools

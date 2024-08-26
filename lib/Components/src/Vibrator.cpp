@@ -10,6 +10,11 @@
 namespace MaskUP::ESP
 {
 
+void Vibrator::setup (uint8_t inPin, uint8_t inMode)
+{
+    
+}
+
 void Vibrator::run ()
 {
     m_state = true;

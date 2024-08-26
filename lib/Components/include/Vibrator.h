@@ -38,8 +38,12 @@ public:
     */
     virtual void stop () = 0;
 
+    void setSide (Side inSide);
+    
+    State m_state;
+
 private:
-    bool m_state;
+    Side m_side;
 };
 
 }

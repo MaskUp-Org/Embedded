@@ -17,5 +17,8 @@ std::string ESP_32::getDeviceName ()
 {
     return m_deviceName;
 }
-
+void ESP_32::setDevicename(const std::string &inDeviceName)
+{
+    m_deviceName = inDeviceName;
+}
 }

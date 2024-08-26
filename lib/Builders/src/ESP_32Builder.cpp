@@ -25,6 +25,13 @@ ESP_32Builder *ESP_32Builder::reset ()
 ESP_32Builder *ESP_32Builder::buildDeviceName(const std::string &inDeviceName)
 {
     m_pEsp32->m_deviceName = inDeviceName;
+    return this;
+}
+
+ESP_32Builder *ESP_32Builder::buildVersion(const std::string &inDeviceName)
+{
+    m_pEsp32->m_deviceName = inDeviceName;
+    return this;
 }
 
 std::unique_ptr <::MaskUP::Component::ESP_32> ESP_32Builder::build ()
