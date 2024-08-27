@@ -22,18 +22,18 @@ JsonReader::JsonReader(const std::string &inFileName) :
 
 JsonReader::~JsonReader() {}
 
-JsonDocument JsonReader::load()
-{
-    char *file;
-    std::ifstream istrm(m_fileName, std::ios::binary);
-    if (!istrm.is_open())
-        writeLog();
-    else
-    {
-        istrm.read(file, istrm.tellg());
-        deserializeJson(m_document, file);
-    }
-    return m_document;
-}
+// JsonDocument JsonReader::load()
+// {
+//     char *file;
+//     std::ifstream istrm(m_fileName, std::ios::binary);
+//     if (!istrm.is_open())
+//         writeLog();
+//     else
+//     {
+//         istrm.read(file, istrm.tellg());
+//         deserializeJson(m_document, file);
+//     }
+//     return m_document;
+// }
 } // namespace MaskUP::Tools
 } // namespace MaskUP::Tools

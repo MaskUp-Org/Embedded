@@ -22,13 +22,13 @@ class ESP_32
 
 public:
     ESP_32();
-    std::string getDevicename();
+    std::string getDeviceName();
     void setDevicename(const std::string &inDeviceName);
 
 
 private:
     std::string m_deviceName;
-    VersionManager m_version;
+    ::MaskUP::Tools::VersionManager m_version;
     ::MaskUP::Enum::State m_state;
 };
 

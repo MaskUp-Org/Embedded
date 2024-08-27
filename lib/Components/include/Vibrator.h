@@ -7,6 +7,8 @@
 #pragma once
 
 #include "IComponent.h"
+#include "Side.hpp"
+#include "State.hpp"
 
 namespace MaskUP
 {
@@ -38,12 +40,12 @@ public:
     */
     virtual void stop () = 0;
 
-    void setSide (Side inSide);
+    void setSide (::MaskUP::Enum::Side inSide);
     
-    State m_state;
+    ::MaskUP::Enum::State m_state;
 
 private:
-    Side m_side;
+    ::MaskUP::Enum::Side m_side;
 };
 
 }

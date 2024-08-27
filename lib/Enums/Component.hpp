@@ -4,11 +4,14 @@
  * Copyright (c) 2024 MaskUp
  */
 
+
+#pragma once
+
 namespace MaskUP
 {
 namespace Enum
 {
-enum Component
+enum class Component
 {
     UNKNOWN,
     ESP_32,

@@ -9,6 +9,7 @@
 #include "IComponent.h"
 #include "Position.hpp"
 #include "State.hpp"
+#include <ESP32Servo.h>
 
 namespace MaskUP
 {
@@ -19,13 +20,8 @@ class ServoMotor : public IComponent
 {
 public:
 
-    /**
-     * @brief Setup the component
-     * @param inPin : Pin number physically connected to the component
-     * @param inMode : INPUT or OUTPUT
-     *
-     */
-    virtual void setup (uint8_t inPin, uint8_t inMode) override;
+    virtual void setup (uint8_t inPin, uint8_t inMode)  = 0;
+    void setup (uint8_t inPin);
 
 
     /**
@@ -45,6 +41,7 @@ public:
     ::MaskUP::Enum::State m_state;
 private:
     ::MaskUP::Enum::Position m_position;
+    std::unique_ptr <Servo> m_pServo;
 };
 
 }

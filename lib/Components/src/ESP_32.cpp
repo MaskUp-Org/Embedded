@@ -7,7 +7,9 @@
 
 #include "ESP_32.h"
 
-namespace MaskUP::Component
+namespace MaskUP
+{
+namespace Component
 {
 
 ESP_32::ESP_32() {
@@ -20,5 +22,6 @@ std::string ESP_32::getDeviceName ()
 void ESP_32::setDevicename(const std::string &inDeviceName)
 {
     m_deviceName = inDeviceName;
+}
 }
 }

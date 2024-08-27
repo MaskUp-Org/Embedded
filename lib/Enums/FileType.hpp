@@ -4,12 +4,13 @@
  * Copyright (c) 2024 Your Company
  */
 
+#pragma once
 namespace MaskUP
 {
 namespace Enum
 {
 
-enum FileType {
+enum class FileType {
     UNKNOWN,
     JSON,
     YAML,

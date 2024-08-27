@@ -24,11 +24,11 @@ public:
     JsonReader(/* args */) = delete;
     JsonReader(const std::string &inFileName);
     ~JsonReader();
-    JsonDocument load();
+    // JsonDocument load();
 
 private:
     const std::string m_fileName;
-    JsonDocument m_document;
+    // JsonDocument m_document;
 
 };
 

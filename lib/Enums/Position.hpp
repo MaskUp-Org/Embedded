@@ -4,12 +4,14 @@
  * Copyright (c) 2024 Your Company
  */
 
+#pragma once
+
 namespace MaskUP
 {
 namespace Enum
 {
 
-enum Position {
+enum class Position {
     UNKNOWN,
     M1000,
     M2000,
@@ -39,6 +41,28 @@ inline const std::string positionToString(Position inPosition)
     case Position::UNKNOWN:
     default:
         return "Unknown";
+    }
+}
+
+// TODO : set correct directions
+inline const int positionToDirection (Position inPosition)
+{
+    switch (inPosition)
+    {
+    case Position::M1000:
+        return 0;
+    case Position::M2000:
+        return 10;
+    case Position::M3000:
+        return 20;
+    case Position::M4000:
+        return 30;
+    case Position::M5000:
+        return 40;
+    case Position::END:
+    case Position::UNKNOWN:
+    default:
+        return 0;
     }
 }
 

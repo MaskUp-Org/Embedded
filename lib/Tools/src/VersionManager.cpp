@@ -5,6 +5,7 @@
  */
 
 #include "VersionManager.h"
+#include <vector>
 
 namespace MaskUP
 {
@@ -20,11 +21,24 @@ std::string VersionManager::getVersion ()
     return ret;
 }
 
+std::vector <char *>split (const char *inStr, char *splitter)
+{
+    std::vector<char *> ret;
+    ret.push_back (strtok (strdup (inStr), splitter));
+
+    char *tmp = nullptr;
+    while ((tmp = strtok (nullptr, splitter)) != nullptr)
+    {
+        ret.push_back(tmp);
+    }
+    return ret;
+}
+
 bool VersionManager::setVersion (const std::string &inVersion)
 {
-    char* major = strtok(strdup (inVersion.c_str()), ".");
-    char* minor = strtok(nullptr, ".");
-    char* fix = strtok(nullptr, ".");
+    char *major = strtok(strdup (inVersion.c_str()), ".");
+    char *minor = strtok(nullptr, ".");
+    char *fix = strtok(nullptr, ".");
 
     if (major == nullptr || minor == nullptr || fix == nullptr)
     {

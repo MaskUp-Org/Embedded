@@ -4,11 +4,13 @@
  * Copyright (c) 2024 Your Company
  */
 
+#pragma once
+
 namespace MaskUP
 {
 namespace Enum
 {
-enum Side
+enum class Side
 {
     UNKNOWN,
     LEFT,

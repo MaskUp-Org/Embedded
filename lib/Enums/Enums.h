@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include "Component.hpp"
 #include "FileType.hpp"
 #include "Position.hpp"

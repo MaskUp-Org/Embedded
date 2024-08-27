@@ -7,24 +7,27 @@
 #include "Vibrator.h"
 #include <iostream>
 
-namespace MaskUP::ESP
+namespace MaskUP
+{
+namespace Component
 {
 
 void Vibrator::setup (uint8_t inPin, uint8_t inMode)
 {
-    
+    pinMode(inPin, inMode);
 }
 
 void Vibrator::run ()
 {
-    m_state = true;
+    // m_state = true;
     std::cout << "Vibrator::run.\n";
 }
 
 void Vibrator::stop ()
 {
-    m_state = false;
+    // m_state = false;
     std::cout << "Vibrator::stop.\n";
 }
 
+}
 }
