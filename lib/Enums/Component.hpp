@@ -21,6 +21,7 @@ enum class Component
     RIGHTVIBRATOR,
     EMERGENCYBUTTON,
     SERVOMOTOR,
+    BATTERY,
 
     END
 };

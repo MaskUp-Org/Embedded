@@ -4,7 +4,7 @@
  * Copyright (c) 2024 MaskUP
  */
 
-#include "VersionManager.h"
+#include "Versioner.h"
 #include <vector>
 
 namespace MaskUP
@@ -12,7 +12,7 @@ namespace MaskUP
 namespace Tools
 {
 
-std::string VersionManager::getVersion () 
+std::string Versioner::getVersion () 
 {
     std::string ret;
     ret.append (m_major).append (".")
@@ -34,7 +34,7 @@ std::vector <char *>split (const char *inStr, char *splitter)
     return ret;
 }
 
-bool VersionManager::setVersion (const std::string &inVersion)
+bool Versioner::setVersion (const std::string &inVersion)
 {
     char *major = strtok(strdup (inVersion.c_str()), ".");
     char *minor = strtok(nullptr, ".");

@@ -16,7 +16,7 @@ namespace Tools
 {
 
 
-class VersionManager
+class Versioner
 {
 public:
     std::string getVersion ();

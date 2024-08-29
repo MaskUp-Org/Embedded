@@ -7,9 +7,17 @@
 #include "BCHeadphone.h"
 #include <iostream>
 
-namespace MaskUP::Component
+namespace MaskUP
 {
-
+namespace Component
+{
+    
+void BCHeadphone::setup (uint8_t inPin, uint8_t inMode)
+{
+    (void) inPin;
+    (void) inMode;
+    std::cout << "BCHeadphone::run.\n";
+}
 void BCHeadphone::run ()
 {
     std::cout << "BCHeadphone::run.\n";
@@ -20,4 +28,5 @@ void BCHeadphone::stop ()
     std::cout << "BCHeadphone::stop.\n";
 }
 
+}
 }

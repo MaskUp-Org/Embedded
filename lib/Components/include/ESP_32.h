@@ -9,8 +9,8 @@
 
 #include <memory>
 #include <string>
-#include "State.hpp"
-#include "VersionManager.h"
+#include "Enums.h"
+#include "Versioner.h"
 
 namespace MaskUP
 {
@@ -23,13 +23,16 @@ class ESP_32
 public:
     ESP_32();
     std::string getDeviceName();
-    void setDevicename(const std::string &inDeviceName);
+    void setDeviceName(const std::string &inDeviceName);
+    void setDeviceVersion(const std::string &inDeviceVersion);
 
+    ::MaskUP::Enum::Component m_id;
+    ::MaskUP::Enum::State m_state;
 
 private:
     std::string m_deviceName;
-    ::MaskUP::Tools::VersionManager m_version;
-    ::MaskUP::Enum::State m_state;
+    ::MaskUP::Tools::Versioner m_version;
+
 };
 
 }

@@ -33,12 +33,7 @@ public:
     virtual ESP_32Builder *reset () override ;
 
     ESP_32Builder *buildDeviceName (const std::string &inDeviceName);
-    //ESP_32Builder *buildLeftVibrator ();
-    //ESP_32Builder *buildRightVibrator();
-    //ESP_32Builder *buildLeftBCHeadPhone();
-    //ESP_32Builder *buildRightBCHeadPhone();
-    //ESP_32Builder *buildEmergencyButton();
-    //ESP_32Builder *buildServomotor();
+
     /**
      * @brief Last function called when building an object. It must returns the object created.
      *

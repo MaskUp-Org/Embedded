@@ -36,7 +36,6 @@ public:
     *
     */
     virtual void stop () override;
-
     
 
 };

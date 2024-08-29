@@ -7,14 +7,14 @@
 
 #pragma once
 
-#include "IComponent.h"
-
+#include "StateMachine.h"
+#include <memory>
 namespace MaskUP
 {
 namespace Component
 {
 
-class EmergencyButton : public IComponent
+class EmergencyButton
 {
 public:
 
@@ -24,21 +24,12 @@ public:
      * @param inMode : INPUT or OUTPUT
      *
      */
-    virtual void setup (uint8_t inPin, uint8_t inMode) override;
+     void setup (uint8_t inPin, uint8_t inMode) ;
+
+    void registerStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine>);
 
 
-    /**
-     * @brief Run the component.
-     *
-     */
-    virtual void run () =0;
-
-    /**
-    * @brief Stop the component
-    *
-    */
-    virtual void stop () = 0;
-
+     std::shared_ptr<::MaskUP::StateMachine::StateMachine> m_pStateMachine;
 };
 
 }

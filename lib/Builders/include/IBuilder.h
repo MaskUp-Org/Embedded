@@ -32,10 +32,6 @@ public:
      * @return std::unique_ptr<T> Object created
      */
     virtual std::unique_ptr<T> build() = 0;
-
-    bool changeState (const ::MaskUP::Enum::State inState);
-
-    ::MaskUP::Enum::State getState ();
 };
 
 }

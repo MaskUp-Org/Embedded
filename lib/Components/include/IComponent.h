@@ -8,8 +8,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include "needed.hpp"
-#include "State.hpp"
+#include "Enums.h"
 
 namespace MaskUP
 {
@@ -41,7 +40,6 @@ public:
     virtual void stop () = 0;
 
     ::MaskUP::Enum::State m_state;
-
 };
 
 

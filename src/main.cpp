@@ -8,6 +8,9 @@
 
 
 #include <Arduino.h>
+#include "StateMachine.h"
+#include "EmergencyButton.h"
+// #include "ServoMotor.h"
 // #include <vector>
 // #include "IComponent.h"
 // #include "BCHeadphone.h"

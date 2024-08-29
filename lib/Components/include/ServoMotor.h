@@ -7,9 +7,9 @@
 #pragma once
 
 #include "IComponent.h"
-#include "Position.hpp"
-#include "State.hpp"
+#include "Enums.h"
 #include <ESP32Servo.h>
+#include <memory>
 
 namespace MaskUP
 {
@@ -39,6 +39,8 @@ public:
     void changePosition (const ::MaskUP::Enum::Position inPosition);
 
     ::MaskUP::Enum::State m_state;
+    ::MaskUP::Enum::Component m_id;
+
 private:
     ::MaskUP::Enum::Position m_position;
     std::unique_ptr <Servo> m_pServo;
