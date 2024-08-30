@@ -11,7 +11,7 @@ namespace MaskUP
 namespace Enum
 {
 
-enum class Requests 
+enum class Request
 {
     UNKNOWN,
 

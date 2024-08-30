@@ -4,6 +4,7 @@
 #include "FileType.hpp"
 #include "Position.hpp"
 #include "Priority.hpp"
-#include "Requests.hpp"
+#include "Request.hpp"
+#include "Return.hpp"
 #include "Side.hpp"
 #include "State.hpp"

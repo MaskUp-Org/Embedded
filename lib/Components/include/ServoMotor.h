@@ -39,7 +39,6 @@ public:
     void changePosition (const ::MaskUP::Enum::Position inPosition);
 
     ::MaskUP::Enum::State m_state;
-    ::MaskUP::Enum::Component m_id;
 
 private:
     ::MaskUP::Enum::Position m_position;

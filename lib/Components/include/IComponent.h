@@ -40,6 +40,7 @@ public:
     virtual void stop () = 0;
 
     ::MaskUP::Enum::State m_state;
+
 };
 
 
