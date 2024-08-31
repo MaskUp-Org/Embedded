@@ -46,12 +46,13 @@ void StateMachine::clearQueue()
     }
     else if (!m_standardRequest.empty())
     {
-        auto val = act(*m_emergencyRequest.begin());
+        auto val = act(*m_standardRequest.begin());
+
         switch (val)
         {
         case ::MaskUP::Enum::ReturnValue::OK:
             //Everything good, just clear the queue
-            m_emergencyRequest.erase(m_emergencyRequest.begin());
+            m_standardRequest.erase(m_standardRequest.begin());
             break;
 
         case ::MaskUP::Enum::ReturnValue::ERROR_OCCURED:
@@ -93,6 +94,32 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
         }
     }
     return ret;
+}
+
+::MaskUP::Enum::ReturnValue StateMachine::act(const::MaskUP::StateMachine::Request& inRequest)
+{
+    ::MaskUP::Enum::ReturnValue res = ::MaskUP::Enum::ReturnValue::END;
+    return res;
+}
+
+void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg)
+{
+
+}
+
+void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const uint32_t inArg)
+{
+
+}
+
+void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const std::string& inArg)
+{
+
+}
+
+void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest)
+{
+
 }
 
 }

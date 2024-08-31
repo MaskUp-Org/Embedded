@@ -10,20 +10,22 @@
 #include <string>
 #include "Enums.h"
 
-bool request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const uint32_t inArg);
-bool request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg);
-bool request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const std::string& inArg);
-bool request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest);
-
 namespace MaskUP
 {
 namespace StateMachine
 {
-
 class Request
 {
 public:
 
+    ::MaskUP::Enum::Component m_Component;
+    ::MaskUP::Enum::Request m_request;
+
+    std::string m_str;
+    uint32_t m_i;
+    ::MaskUP::Enum::Position m_pos;
+
+    ::MaskUP::Enum::Args m_argType;
 };
 
 }

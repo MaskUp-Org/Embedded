@@ -18,16 +18,16 @@ namespace MaskUP
 {
 namespace Build
 {
-class EmergencyButtonBuilder : public IBuilder <::MaskUP::Component::EmergencyButton>
+class EmergencyButtonBuilder : public IBuilder <::MaskUP::Communication::EmergencyButton>
 {
 public:
-    virtual EmergencyButtonBuilder *reset () override ;
+    virtual EmergencyButtonBuilder* reset() override;
 
-    virtual std::unique_ptr <::MaskUP::Component::EmergencyButton> build () override;
+    virtual std::unique_ptr <::MaskUP::Communication::EmergencyButton> build() override;
 
 private:
 
-    std::unique_ptr <::MaskUP::Component::EmergencyButton> m_pEmergencyButton;
+    std::unique_ptr <::MaskUP::Communication::EmergencyButton> m_pEmergencyButton;
 
 };
 }

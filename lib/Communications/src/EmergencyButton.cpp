@@ -9,17 +9,17 @@
 
 namespace MaskUP
 {
-namespace Component
+namespace Communication
 {
 
-void EmergencyButton::setup (uint8_t inPin, uint8_t inMode)
+void EmergencyButton::setup(uint8_t inPin, uint8_t inMode)
 {
-    (void) inPin;
-    (void) inMode;
+    (void)inPin;
+    (void)inMode;
     std::cout << "BCHeadphone::run.\n";
 }
 
-void EmergencyButton::registerStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
+void EmergencyButton::registerStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
 {
     m_pStateMachine = inpStateMachine;
 }

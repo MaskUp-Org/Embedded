@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Args.hpp"
 #include "Component.hpp"
 #include "FileType.hpp"
 #include "Position.hpp"

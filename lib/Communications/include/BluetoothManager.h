@@ -7,13 +7,16 @@
 
 #pragma once
 
+#include "ICommunication.h"
+
 namespace MaskUP
 {
 namespace Communication
 {
 
-class BluetoothManager
+class BluetoothManager final : public ICommunication
 {
+
 };
 }
 }

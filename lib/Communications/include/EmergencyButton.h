@@ -8,13 +8,16 @@
 #pragma once
 
 #include "StateMachine.h"
+#include "ICommunication.hpp"
+
 #include <memory>
+
 namespace MaskUP
 {
-namespace Component
+namespace Communication
 {
 
-class EmergencyButton
+class EmergencyButton : public ICommunication
 {
 public:
 
@@ -24,12 +27,9 @@ public:
      * @param inMode : INPUT or OUTPUT
      *
      */
-     void setup (uint8_t inPin, uint8_t inMode) ;
-
-    void registerStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine>);
+    void setup(uint8_t inPin, uint8_t inMode);
 
 
-     std::shared_ptr<::MaskUP::StateMachine::StateMachine> m_pStateMachine;
 };
 
 }
