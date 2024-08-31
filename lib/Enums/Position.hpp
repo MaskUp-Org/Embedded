@@ -84,5 +84,23 @@ inline Position positionFromString ( const std::string &inPosition )
 
 }
 
+inline Position positionFromInt( const int inPosition )
+{
+    if (inPosition == 1000)
+        return Position::M1000;
+    else if (inPosition == 2000)
+        return Position::M2000;
+    else if (inPosition == 3000)
+        return Position::M3000;
+    else if (inPosition == 4000)
+        return Position::M4000;
+    else if (inPosition == 5000)
+        return Position::M5000;
+    else
+        // We need to return a value
+        return Position::M1000;
+
+}
+
 }
 }

@@ -8,25 +8,26 @@
 
 
 #include <Arduino.h>
-#include "StateMachine.h"
-#include "EmergencyButton.h"
+//#include "StateMachine.h"
+//#include "EmergencyButton.h"
+#include "BluetoothManager.h"
 // #include "ServoMotor.h"
 // #include <vector>
 // #include "IComponent.h"
 // #include "BCHeadphone.h"
 // #include "HardwareSerial.h"
 
+MaskUP::Communication::BluetoothManager bluetoothManager;
+
+
+
 void setup() {
 
-    Serial.println();
-    // put your setup code here, to run once:
-    pinMode(16, OUTPUT);
+    bluetoothManager.setup();
+    Serial.begin(115200);
+   
 }
 
 void loop() {
-    // put your main code here, to run repeatedly:
-    digitalWrite(16, HIGH);
-    delay(1000);
-    digitalWrite(16, LOW);
-    delay(1000);
+    bluetoothManager.loop();
 }

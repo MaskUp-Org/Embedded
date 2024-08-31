@@ -14,16 +14,21 @@ namespace Enum
 enum class ReturnValue
 {
     UNKNOWN,
+
     OK,
+    ERROR_OCCURED,
     COMPONENT_NOT_FOUND,
     COMPONENT_NOT_ALLOWED,
-    ERROR_OCCURED,
     INVALID_POINTER,
     EMPTY_QUEUE,
     EMPTY_REQUEST,
 
     END
 };
+
+
+
+
 
 }
 }

@@ -25,6 +25,7 @@ enum class Request
     GET_BATTERY_PERCENTAGE,
     GET_POSITION,
     GET_DEVICE_NAME,
+    GET_DEVICE_VERSION,
 
     END
 };
