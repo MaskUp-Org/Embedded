@@ -36,14 +36,17 @@ private:
 
     void processIncomingJsonData(JsonDocument jsonDoc);
 
-    void processRequest(Actions action);
-    void processRequest(Actions action, const int value);
-    void processRequest(Actions action, const std::string& value);
+    void processIncomingRequest(Actions action);
+    void processIncomingRequest(Actions action, const int value);
+    void processIncomingRequest(Actions action, const std::string& value);
 
-    void proccessResponse(Enum::ReturnValue inReturnValue);
-    void proccessResponse(Enum::ReturnValue inReturnValue, Actions action, std::string& value);
-    void proccessResponse(Enum::ReturnValue inReturnValue, Actions action);
+    void processNotOkResponse(Enum::ReturnValue inReturnValue);
 
+    void processRequestResponse(Enum::ReturnValue inReturnValue);
+    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, std::string& value);
+    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, u_int32_t value);
+
+    void sendJsonData(JsonDocument jsonDoc);
 
     bool m_state;
 
