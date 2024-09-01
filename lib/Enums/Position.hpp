@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <string>
 namespace MaskUP
 {
 namespace Enum
@@ -45,7 +46,7 @@ inline const std::string positionToString(Position inPosition)
 }
 
 // TODO : set correct directions
-inline const int positionToDirection (Position inPosition)
+inline const int positionToDirection(Position inPosition)
 {
     switch (inPosition)
     {
@@ -66,7 +67,7 @@ inline const int positionToDirection (Position inPosition)
     }
 }
 
-inline Position positionFromString ( const std::string &inPosition )
+inline Position positionFromString(const std::string& inPosition)
 {
     if (inPosition == "1000")
         return Position::M1000;
@@ -84,7 +85,7 @@ inline Position positionFromString ( const std::string &inPosition )
 
 }
 
-inline Position positionFromInt( const int inPosition )
+inline Position positionFromInt(const int inPosition)
 {
     if (inPosition == 1000)
         return Position::M1000;

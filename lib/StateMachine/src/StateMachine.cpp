@@ -104,22 +104,37 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
 
 void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg)
 {
+    (void)inComponent;
+    (void)inRequest;
+    (void)inArg;
+}
 
+void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Side inArg)
+{
+    (void)inComponent;
+    (void)inRequest;
+    (void)inArg;
 }
 
 void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const uint32_t inArg)
 {
-
+    (void)inComponent;
+    (void)inRequest;
+    (void)inArg;
 }
 
 void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const std::string& inArg)
 {
+    (void)inComponent;
+    (void)inRequest;
+    (void)inArg;
 
 }
 
 void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest)
 {
-
+    (void)inComponent;
+    (void)inRequest;
 }
 
 }

@@ -9,7 +9,7 @@
 
 #include <ArduinoJson.h>
 #include "Json.hpp"
-#include "ICommunication.hpp"
+#include "ICommunication.h"
 #include "BluetoothSerial.h"
 
 namespace MaskUP
@@ -19,35 +19,35 @@ namespace Communication
 
 class BluetoothManager final : public ICommunication
 {
-    public:
-            /**
-             * @brief Setup the component
-             * @param inPin : Pin number physically connected to the component
-             * @param inMode : INPUT or OUTPUT
-             *
-             */
-             void setup( ) ;
-             void loop( ) ;
+public:
+    /**
+     * @brief Setup the component
+     * @param inPin : Pin number physically connected to the component
+     * @param inMode : INPUT or OUTPUT
+     *
+     */
+    void setup();
+    void loop();
 
 
 
-        private:
-            void manageBluetoothData();
+private:
+    void manageBluetoothData();
 
-            void processIncomingJsonData(StaticJsonDocument<200>& jsonDoc);
+    void processIncomingJsonData(JsonDocument jsonDoc);
 
-            void processRequest(Actions action);
-            void processRequest(Actions action, const int value);
-            void processRequest(Actions action, const std::string &value);
+    void processRequest(Actions action);
+    void processRequest(Actions action, const int value);
+    void processRequest(Actions action, const std::string& value);
 
-            void proccessResponse(Enum::ReturnValue inReturnValue);
-            void proccessResponse(Enum::ReturnValue inReturnValue, Actions action, std::string &value);
-            void proccessResponse(Enum::ReturnValue inReturnValue, Actions action);
+    void proccessResponse(Enum::ReturnValue inReturnValue);
+    void proccessResponse(Enum::ReturnValue inReturnValue, Actions action, std::string& value);
+    void proccessResponse(Enum::ReturnValue inReturnValue, Actions action);
 
 
-            bool m_state;
+    bool m_state;
 
-            BluetoothSerial SerialBT;
+    BluetoothSerial SerialBT;
 
 
 };

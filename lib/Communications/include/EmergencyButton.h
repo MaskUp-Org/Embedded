@@ -8,7 +8,7 @@
 #pragma once
 
 #include "StateMachine.h"
-#include "ICommunication.hpp"
+#include "ICommunication.h"
 
 #include <memory>
 
