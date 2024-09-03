@@ -34,19 +34,20 @@ public:
 private:
     void manageBluetoothData();
 
-    void processIncomingJsonData(JsonDocument jsonDoc);
+    //void processIncomingJsonData(JsonDocument jsonDoc);
+    void processIncomingData(String incomingData);
 
-    void processIncomingRequest(Actions action);
-    void processIncomingRequest(Actions action, const int value);
-    void processIncomingRequest(Actions action, const std::string& value);
+    // void processIncomingRequest(Actions action);
+    // void processIncomingRequest(Actions action, const int value);
+    // void processIncomingRequest(Actions action, const std::string& value);
 
     void processNotOkResponse(Enum::ReturnValue inReturnValue);
 
     void processRequestResponse(Enum::ReturnValue inReturnValue);
-    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, std::string& value);
-    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, u_int32_t value);
+    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, String value);
+    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, uint32_t value);
 
-    void sendJsonData(JsonDocument jsonDoc);
+    void sendData(String jsonDoc);
 
     bool m_state;
 
