@@ -1,4 +1,16 @@
-#include <string>
+/*
+ * Created on Sat Aug 17 2024
+ *
+ * Copyright (c) 2024 Your Company
+ */
+
+#pragma once
+
+#include <Arduino.h>
+namespace MaskUP
+{
+namespace Enum
+{
 
 enum class Type {
     UNKNOWN,
@@ -8,7 +20,7 @@ enum class Type {
     END
 };
 
-enum class Actions {
+enum class Action {
     UNKNOWN,
     SET_ALTITUDE,
     DIRECTION,
@@ -25,36 +37,36 @@ enum class Actions {
     END
 };
 
-inline Actions actionsFromString ( const std::string &inAction )
+inline Action actionFromString(const String& inAction)
 {
     if (inAction == "set_altitude")
-        return Actions::SET_ALTITUDE;
-    
+        return Action::SET_ALTITUDE;
+
     else if (inAction == "direction")
-        return Actions::DIRECTION;
+        return Action::DIRECTION;
     else if (inAction == "get_battery")
-        return Actions::GET_BATTERY_PERCENTAGE;
+        return Action::GET_BATTERY_PERCENTAGE;
     else if (inAction == "get_altitude")
-        return Actions::GET_ALTITUDE;
+        return Action::GET_ALTITUDE;
     else if (inAction == "set_version")
-        return Actions::SET_VERSION;
+        return Action::SET_VERSION;
     else if (inAction == "stop_sound")
-        return Actions::STOP_SOUND;
+        return Action::STOP_SOUND;
     else if (inAction == "run_sound")
-        return Actions::RUN_SOUND;
+        return Action::RUN_SOUND;
     else if (inAction == "set_device_name")
-        return Actions::SET_DEVICE_NAME;
+        return Action::SET_DEVICE_NAME;
     else if (inAction == "get_device_name")
-        return Actions::GET_DEVICE_NAME;
+        return Action::GET_DEVICE_NAME;
     else if (inAction == "get_version")
-        return Actions::GET_VERSION;
-    
+        return Action::GET_VERSION;
+
     else
         // We need to return a value
-        return Actions::UNKNOWN;
+        return Action::UNKNOWN;
 }
 
-inline Type typeFromString ( const std::string &inType )
+inline Type typeFromString(const String& inType)
 {
     if (inType == "command")
         return Type::COMMAND;
@@ -63,4 +75,6 @@ inline Type typeFromString ( const std::string &inType )
     else
         // We need to return a value
         return Type::UNKNOWN;
+}
+}
 }

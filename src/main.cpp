@@ -8,8 +8,8 @@
 
 
 #include <Arduino.h>
-//#include "StateMachine.h"
-//#include "EmergencyButton.h"
+ //#include "StateMachine.h"
+ //#include "EmergencyButton.h"
 #include "BluetoothManager.h"
 // #include "ServoMotor.h"
 // #include <vector>
@@ -22,10 +22,10 @@ MaskUP::Communication::BluetoothManager bluetoothManager;
 
 
 void setup() {
-
-    bluetoothManager.setup();
     Serial.begin(115200);
-   
+
+    // bluetoothManager.setup();
+
 }
 
 void loop() {

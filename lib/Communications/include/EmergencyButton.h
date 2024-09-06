@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include "StateMachine.h"
 #include "ICommunication.h"
 
 #include <memory>
@@ -20,7 +19,8 @@ namespace Communication
 class EmergencyButton : public ICommunication
 {
 public:
-
+    EmergencyButton();
+    ~EmergencyButton();
     /**
      * @brief Setup the component
      * @param inPin : Pin number physically connected to the component
@@ -29,6 +29,12 @@ public:
      */
     void setup(uint8_t inPin, uint8_t inMode);
 
+    void run();
+
+
+private:
+    int16_t m_lastButtonState;
+    uint8_t m_pin;
 
 };
 

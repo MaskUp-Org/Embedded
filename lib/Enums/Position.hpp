@@ -6,7 +6,9 @@
 
 #pragma once
 
+#include <Arduino.h>
 #include <string>
+
 namespace MaskUP
 {
 namespace Enum
@@ -23,7 +25,7 @@ enum class Position {
     END
 };
 
-inline const std::string positionToString(Position inPosition)
+inline const String positionToString(Position inPosition)
 {
     switch (inPosition)
     {
@@ -67,7 +69,7 @@ inline const int positionToDirection(Position inPosition)
     }
 }
 
-inline Position positionFromString(const std::string& inPosition)
+inline Position positionFromString(const String& inPosition)
 {
     if (inPosition == "1000")
         return Position::M1000;

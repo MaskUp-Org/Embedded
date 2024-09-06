@@ -1,5 +1,5 @@
 /*
- * Created on Sat Aug 17 2024
+ * Created on Thu Sep 05 2024
  *
  * Copyright (c) 2024 MaskUp
  */
@@ -11,14 +11,11 @@ namespace MaskUP
 {
 namespace Enum
 {
-enum class Args
+enum class Caller
 {
     UNKNOWN,
-    INT,
-    STR,
-    POSITION,
-    SIDE,
-    NONE,
+    EMERGENCYBUTTON,
+    BLUETOOTH,
 
     END
 };

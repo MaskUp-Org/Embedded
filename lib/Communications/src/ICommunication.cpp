@@ -8,12 +8,21 @@
 #include "ICommunication.h"
 #include <iostream>
 #include <memory>
-#include <string>
 
 namespace MaskUP
 {
 namespace Communication
 {
+
+ICommunication::ICommunication() :
+    m_pStateMachine(nullptr)
+{
+
+}
+ICommunication::~ICommunication()
+{
+
+}
 
 void ICommunication::registerStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
 {
@@ -38,12 +47,12 @@ void ICommunication::request(const ::MaskUP::Enum::Component inComponent, const 
     m_pStateMachine->registerRequest(inComponent, inRequest, inArg);
 }
 
-void ICommunication::request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg)
+void ICommunication::request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg, const ::MaskUP::Enum::Caller inCaller)
 {
-    m_pStateMachine->registerRequest(inComponent, inRequest, inArg);
+    m_pStateMachine->registerRequest(inComponent, inRequest, inArg, inCaller);
 }
 
-void ICommunication::request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const std::string& inArg)
+void ICommunication::request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const String& inArg)
 {
     m_pStateMachine->registerRequest(inComponent, inRequest, inArg);
 }

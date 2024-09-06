@@ -7,10 +7,11 @@
 
 #pragma once
 
-#include <ArduinoJson.h>
 #include "Json.hpp"
 #include "ICommunication.h"
 #include "BluetoothSerial.h"
+#include <Arduino.h>
+#include <string>
 
 namespace MaskUP
 {
@@ -20,13 +21,16 @@ namespace Communication
 class BluetoothManager final : public ICommunication
 {
 public:
+
+    BluetoothManager();
+
     /**
      * @brief Setup the component
      * @param inPin : Pin number physically connected to the component
      * @param inMode : INPUT or OUTPUT
      *
      */
-    void setup();
+    void setup(const uint32_t inSerial, const String& inBTDeviceName);
     void loop();
 
 
@@ -34,12 +38,7 @@ public:
 private:
     void manageBluetoothData();
 
-    //void processIncomingJsonData(JsonDocument jsonDoc);
     void processIncomingData(String incomingData);
-
-    // void processIncomingRequest(Actions action);
-    // void processIncomingRequest(Actions action, const int value);
-    // void processIncomingRequest(Actions action, const std::string& value);
 
     void processNotOkResponse(Enum::ReturnValue inReturnValue);
 
@@ -49,7 +48,6 @@ private:
 
     void sendData(String jsonDoc);
 
-    bool m_state;
 
     BluetoothSerial SerialBT;
 

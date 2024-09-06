@@ -18,7 +18,7 @@ bool request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::
     return ret;
 }
 
-bool request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const std::string& inArg)
+bool request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const String& inArg)
 {
     bool ret = false;
     return ret;

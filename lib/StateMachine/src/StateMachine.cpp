@@ -79,7 +79,12 @@ void StateMachine::changeState(const ::MaskUP::Enum::State inState)
     {
         return;
     }
-    m_pState = std::make_shared<::MaskUP::Enum::State>(inState);
+    m_pEsp32->m_state = inState;
+    m_pLeftBCHeadPhone->m_state = inState;
+    m_pLeftVibrator->m_state = inState;
+    m_pServomotor->m_state = inState;
+    m_pRightBCHeadPhone->m_state = inState;
+    m_pRightVibrator->m_state = inState;
 }
 
 bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
@@ -99,42 +104,195 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
 ::MaskUP::Enum::ReturnValue StateMachine::act(const::MaskUP::StateMachine::Request& inRequest)
 {
     ::MaskUP::Enum::ReturnValue res = ::MaskUP::Enum::ReturnValue::END;
+
+    switch (inRequest.m_Component)
+    {
+    case ::MaskUP::Enum::Component::ESP_32:
+        res = esp32Actions(inRequest.m_request, inRequest.m_str);
+        break;
+    case ::MaskUP::Enum::Component::LEFTVIBRATOR:
+        res = lVibratorActions();
+        break;
+    case ::MaskUP::Enum::Component::RIGHTVIBRATOR:
+        res = rVibratorActions();
+        break;
+    case ::MaskUP::Enum::Component::SERVOMOTOR:
+        res = servoMotorActions();
+        break;
+    case ::MaskUP::Enum::Component::BATTERY:
+        res = batteryActions();
+        break;
+    case ::MaskUP::Enum::Component::ALLVIBRATORS:
+        res = allVibratorsActions(inRequest.m_request);
+        break;
+    case ::MaskUP::Enum::Component::LEFTBCHEADPHONE:
+    case ::MaskUP::Enum::Component::RIGHTBCHEADPHONE:
+    default:
+        break;
+    }
     return res;
 }
 
-void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg)
+::MaskUP::Enum::ReturnValue StateMachine::esp32Actions(const ::MaskUP::Enum::Request inRequest, const String& inString)
 {
-    (void)inComponent;
-    (void)inRequest;
-    (void)inArg;
+    ::MaskUP::Enum::ReturnValue ret = ::MaskUP::Enum::ReturnValue::END;
+    if (m_pEsp32 != nullptr
+        && m_pEsp32->m_state != ::MaskUP::Enum::State::ERROR
+        && m_pEsp32->m_state != ::MaskUP::Enum::State::WORKING
+        && m_pEsp32->componentIsReady()
+        )
+    {
+        switch (inRequest)
+        {
+        case ::MaskUP::Enum::Request::CHANGE_DEVICE_NAME:
+            m_pEsp32->setDeviceName(inString);
+            ret = ::MaskUP::Enum::ReturnValue::OK;
+            break;
+        case ::MaskUP::Enum::Request::CHANGE_DEVICE_VERSION:
+            m_pEsp32->setDeviceVersion(inString);
+            ret = ::MaskUP::Enum::ReturnValue::OK;
+            break;
+        default:
+            break;
+        }
+    }
+    return ret;
 }
 
-void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Side inArg)
+::MaskUP::Enum::ReturnValue StateMachine::lVibratorActions()
 {
-    (void)inComponent;
-    (void)inRequest;
-    (void)inArg;
+    ::MaskUP::Enum::ReturnValue ret = ::MaskUP::Enum::ReturnValue::END;
+    if (m_pLeftVibrator != nullptr
+        && m_pLeftVibrator->m_state != ::MaskUP::Enum::State::ERROR
+        && m_pLeftVibrator->m_state != ::MaskUP::Enum::State::WORKING
+        && m_pLeftVibrator->componentIsReady()
+        )
+    {
+        m_pLeftVibrator->run();
+        delay(1000);
+        m_pLeftVibrator->stop();
+
+        ret = ::MaskUP::Enum::ReturnValue::OK;
+    }
+    return ret;
 }
 
-void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const uint32_t inArg)
+::MaskUP::Enum::ReturnValue StateMachine::rVibratorActions()
 {
-    (void)inComponent;
-    (void)inRequest;
-    (void)inArg;
+    ::MaskUP::Enum::ReturnValue ret = ::MaskUP::Enum::ReturnValue::END;
+    if (m_pRightVibrator != nullptr
+        && m_pRightVibrator->m_state != ::MaskUP::Enum::State::ERROR
+        && m_pRightVibrator->m_state != ::MaskUP::Enum::State::WORKING
+        && m_pRightVibrator->componentIsReady()
+        )
+    {
+        m_pRightVibrator->run();
+        delay(1000);
+        m_pRightVibrator->stop();
+
+        ret = ::MaskUP::Enum::ReturnValue::OK;
+    }
+    return ret;
 }
 
-void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const std::string& inArg)
+::MaskUP::Enum::ReturnValue StateMachine::allVibratorsActions(const ::MaskUP::Enum::Request inRequest)
 {
-    (void)inComponent;
-    (void)inRequest;
-    (void)inArg;
+    ::MaskUP::Enum::ReturnValue ret = ::MaskUP::Enum::ReturnValue::END;
 
+    // This is ugly, its true, but I dont want to trust the verification and invert the logic
+    if (m_pRightVibrator != nullptr
+        && m_pRightVibrator->m_state != ::MaskUP::Enum::State::ERROR
+        && m_pRightVibrator->m_state != ::MaskUP::Enum::State::WORKING
+        && m_pRightVibrator->componentIsReady()
+        && m_pLeftVibrator != nullptr
+        && m_pLeftVibrator->m_state != ::MaskUP::Enum::State::ERROR
+        && m_pLeftVibrator->m_state != ::MaskUP::Enum::State::WORKING
+        && m_pLeftVibrator->componentIsReady()
+        )
+    {
+        for (int nbOccurence = 0; nbOccurence < ::MaskUP::Enum::fromRoundAboutToIt(inRequest); nbOccurence += 1)
+        {
+            m_pRightVibrator->run();
+            m_pLeftVibrator->run();
+            delay(500);
+        }
+        ret = ::MaskUP::Enum::ReturnValue::OK;
+    }
+
+    return ret;
 }
 
-void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest)
+::MaskUP::Enum::ReturnValue StateMachine::servoMotorActions()
 {
-    (void)inComponent;
-    (void)inRequest;
+    ::MaskUP::Enum::ReturnValue ret = ::MaskUP::Enum::ReturnValue::END;
+    if (m_pRightVibrator != nullptr
+        && m_pRightVibrator->m_state != ::MaskUP::Enum::State::ERROR
+        && m_pRightVibrator->m_state != ::MaskUP::Enum::State::WORKING
+        && m_pRightVibrator->componentIsReady()
+        )
+    {
+        m_pRightVibrator->run();
+        delay(1000);
+        m_pRightVibrator->stop();
+
+        ret = ::MaskUP::Enum::ReturnValue::OK;
+    }    return ret;
+}
+
+void StateMachine::registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg, const ::MaskUP::Enum::Caller inCaller)
+{
+    Request req;
+    req.m_Component = inComponent;
+    req.m_request = inRequest;
+    req.m_pos = inArg;
+    req.m_argType = ::MaskUP::Enum::Args::POSITION;
+    if (inCaller == ::MaskUP::Enum::Caller::BLUETOOTH)
+    {
+        m_standardRequest.push_back(req);
+    }
+    else if (inCaller == ::MaskUP::Enum::Caller::EMERGENCYBUTTON)
+    {
+        m_emergencyRequest.push_back(req);
+    }
+}
+
+void StateMachine::registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Side inArg)
+{
+    Request req;
+    req.m_Component = inComponent;
+    req.m_request = inRequest;
+    req.m_side = inArg;
+    req.m_argType = ::MaskUP::Enum::Args::SIDE;
+    m_standardRequest.push_back(req);
+}
+
+void StateMachine::registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const uint32_t inArg)
+{
+    Request req;
+    req.m_Component = inComponent;
+    req.m_request = inRequest;
+    req.m_i = inArg;
+    req.m_argType = ::MaskUP::Enum::Args::SIDE;
+    m_standardRequest.push_back(req);
+}
+
+void StateMachine::registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const String& inArg)
+{
+    Request req;
+    req.m_Component = inComponent;
+    req.m_request = inRequest;
+    req.m_str = inArg;
+    req.m_argType = ::MaskUP::Enum::Args::STR;
+    m_standardRequest.push_back(req);
+}
+
+void StateMachine::registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest)
+{
+    Request req;
+    req.m_Component = inComponent;
+    req.m_request = inRequest;
+    req.m_argType = ::MaskUP::Enum::Args::NONE;
+    m_standardRequest.push_back(req);
 }
 
 }

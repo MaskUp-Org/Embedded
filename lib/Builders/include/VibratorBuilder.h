@@ -21,13 +21,13 @@ namespace Build
 class VibratorBuilder : public IBuilder <::MaskUP::Component::Vibrator>
 {
 public:
-    virtual VibratorBuilder *reset () override ;
-    VibratorBuilder *assignSide (const ::MaskUP::Enum::Side inSide) ;
+    virtual VibratorBuilder* reset() override;
+    VibratorBuilder* assignSide(const ::MaskUP::Enum::Side inSide);
 
-    virtual std::unique_ptr <::MaskUP::Component::Vibrator> build () override;
+    virtual std::unique_ptr <::MaskUP::Component::Vibrator> build() override;
 
 private:
-
+    bool m_isReset;
     std::unique_ptr <::MaskUP::Component::Vibrator> m_pVibrator;
 
 };

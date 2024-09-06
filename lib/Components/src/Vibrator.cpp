@@ -12,21 +12,35 @@ namespace MaskUP
 namespace Component
 {
 
-void Vibrator::setup (uint8_t inPin, uint8_t inMode)
+Vibrator::Vibrator() :
+    IComponent(),
+    m_pin(0)
+{
+}
+
+void Vibrator::setup(uint8_t inPin, uint8_t inMode)
 {
     pinMode(inPin, inMode);
+    m_pin = inPin;
+    m_ready = true;
 }
 
-void Vibrator::run ()
+void Vibrator::run()
 {
-    // m_state = true;
-    std::cout << "Vibrator::run.\n";
+    digitalWrite(m_pin, HIGH);
 }
 
-void Vibrator::stop ()
+void Vibrator::stop()
 {
-    // m_state = false;
-    std::cout << "Vibrator::stop.\n";
+    digitalWrite(m_pin, LOW);
+}
+
+void Vibrator::setSide(const ::MaskUP::Enum::Side inSide)
+{
+    if (inSide != ::MaskUP::Enum::Side::END || inSide != ::MaskUP::Enum::Side::UNKNOWN)
+    {
+        m_side = inSide;
+    }
 }
 
 }

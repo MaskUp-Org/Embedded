@@ -7,8 +7,9 @@
 
 #pragma once
 
-#include <string>
 #include <cstring>
+#include <Arduino.h>
+#include <string>
 
 namespace MaskUP
 {
@@ -19,12 +20,12 @@ namespace Tools
 class Versioner
 {
 public:
-    std::string getVersion ();
-    bool setVersion (const std::string &inVersion);
+    String getVersion();
+    bool setVersion(const String& inVersion);
 private:
-    std::string m_major;
-    std::string m_minor;
-    std::string m_fix;
+    String m_major;
+    String m_minor;
+    String m_fix;
 
 };
 }
