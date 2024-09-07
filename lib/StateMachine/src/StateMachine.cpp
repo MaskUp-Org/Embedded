@@ -5,6 +5,7 @@
  */
 
 #include "StateMachine.h"
+#include "FileReader.h"
 
 namespace MaskUP
 {
@@ -237,6 +238,40 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
 
         ret = ::MaskUP::Enum::ReturnValue::OK;
     }    return ret;
+}
+
+void StateMachine::setRequiredComponentsToStart()
+{
+    String components = ::MaskUP::Tools::getDeviceInformation("AllowedComponents");
+    char* tmp = strtok(strdup(components.c_str()), ";");
+    do
+    {
+        String str(tmp);
+        ::MaskUP::Enum::Component tmpComponent = ::MaskUP::Enum::fromStringToComponent(str);
+        if (tmpComponent != ::MaskUP::Enum::Component::UNKNOWN
+            || tmpComponent != ::MaskUP::Enum::Component::ALLVIBRATORS
+            )
+        {
+            m_requiredComponentsToStart.push_back((tmpComponent));
+        }
+    } while (tmp = strtok(nullptr, ";"));
+}
+
+void StateMachine::setAllowedComponentsToRequest()
+{
+    String components = ::MaskUP::Tools::getDeviceInformation("RequestComponents");
+    char* tmp = strtok(strdup(components.c_str()), ";");
+    do
+    {
+        String str(tmp);
+        ::MaskUP::Enum::Component tmpComponent = ::MaskUP::Enum::fromStringToComponent(str);
+        if (tmpComponent != ::MaskUP::Enum::Component::UNKNOWN
+            || tmpComponent != ::MaskUP::Enum::Component::ALLVIBRATORS
+            )
+        {
+            m_allowedComponentsToRequest.push_back((tmpComponent));
+        }
+    } while (tmp = strtok(nullptr, ";"));
 }
 
 void StateMachine::registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg, const ::MaskUP::Enum::Caller inCaller)

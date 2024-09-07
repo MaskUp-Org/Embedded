@@ -6,9 +6,10 @@
  */
 
 #include "BluetoothManagerBuilder.h"
+#include "FileReader.h"
+
 #include <iostream>
 #include <Arduino.h>
-#include <SPIFFS.h>
 
 namespace MaskUP
 {
@@ -23,9 +24,10 @@ BluetoothManagerBuilder* BluetoothManagerBuilder::reset()
     return this;
 }
 
-BluetoothManagerBuilder* setup(const uint32_t inSerial)
+BluetoothManagerBuilder* BluetoothManagerBuilder::setup(const uint32_t inSerial)
 {
-    
+    String deviceName = ::MaskUP::Tools::getDeviceInformation("DeviceName");
+    m_pBluetoothManager->setup(inSerial, deviceName);
 }
 
 std::unique_ptr <::MaskUP::Communication::BluetoothManager> BluetoothManagerBuilder::build()

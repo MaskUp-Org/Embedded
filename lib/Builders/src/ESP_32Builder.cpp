@@ -25,6 +25,7 @@ ESP_32Builder* ESP_32Builder::reset()
 
 ESP_32Builder* ESP_32Builder::buildDeviceName(const String& inDeviceName)
 {
+
     m_pEsp32->setDeviceName(inDeviceName);
     return this;
 }

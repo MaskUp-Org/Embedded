@@ -61,7 +61,7 @@ private:
 
 
 
-
+public:
     std::unique_ptr<::MaskUP::Component::BCHeadphone> m_pLeftBCHeadPhone;
     std::unique_ptr<::MaskUP::Component::BCHeadphone> m_pRightBCHeadPhone;
     std::unique_ptr<::MaskUP::Component::Vibrator> m_pLeftVibrator;
@@ -70,6 +70,8 @@ private:
     std::unique_ptr<::MaskUP::Component::ESP_32> m_pEsp32;
     std::unique_ptr<::MaskUP::Component::Battery> m_pBattery;
 
+
+private:
     std::vector<::MaskUP::StateMachine::Request> m_standardRequest;
     std::vector<::MaskUP::StateMachine::Request> m_emergencyRequest;
 
@@ -77,6 +79,11 @@ private:
 
     std::vector<::MaskUP::Enum::Component> m_allowedComponentsToRequest;
     std::vector<::MaskUP::Enum::Component> m_requiredComponentsToStart;
+
+public:
+    void setRequiredComponentsToStart();
+    void setm_allowedComponentsToRequest();
+
 
 };
 

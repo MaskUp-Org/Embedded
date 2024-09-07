@@ -10,7 +10,7 @@
 #include "StateMachine.h"
 #include "IBuilder.h"
 #include "needed.hpp"
-#include "JsonReader.h"
+#include "FileReader.h"
 #include "Enums.h"
 
 
@@ -43,13 +43,16 @@ public:
     StateMachineBuilder* buildRightBCHeadPhone();
     StateMachineBuilder* buildServomotor();
     StateMachineBuilder* addCallbackFunctions();
+    StateMachineBuilder* setRequiredComponentsToStart();
+    StateMachineBuilder* setAllowedComponentsToRequest();
 
     virtual std::unique_ptr<::MaskUP::StateMachine::StateMachine> build() override;
+
+
 
 private:
     std::unique_ptr<::MaskUP::StateMachine::StateMachine> m_pStateMachine;
     std::vector<::MaskUP::Enum::Component> m_mandatoriesComponents;
-    ::MaskUP::Tools::JsonReader m_fileReader;
     bool m_isReset;
 };
 }
