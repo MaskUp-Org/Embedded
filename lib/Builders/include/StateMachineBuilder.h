@@ -50,6 +50,7 @@ private:
     std::unique_ptr<::MaskUP::StateMachine::StateMachine> m_pStateMachine;
     std::vector<::MaskUP::Enum::Component> m_mandatoriesComponents;
     ::MaskUP::Tools::JsonReader m_fileReader;
+    bool m_isReset;
 };
 }
 }

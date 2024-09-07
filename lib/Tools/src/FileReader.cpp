@@ -12,19 +12,21 @@ namespace MaskUP
 namespace Tools
 {
 
-std::ifstream getFile(const std::string& inFilePath)
+File getFile(const String& inFilePath)
 {
-    std::ifstream file(nullptr);
-    file.open(inFilePath, std::fstream::in | std::fstream::out);
+    LittleFS.begin(true);
+    File file = LittleFS.open(inFilePath.c_str(), "r+");
+    //std::ifstream file(nullptr);
+    //file.open(inFilePath, std::fstream::in | std::fstream::out);
     return file;
 }
 
-std::string getDeviceInformation(const std::string& inDeviceInfo)
+String getDeviceInformation(const String& inDeviceInfo)
 {
-    std::string ret = "";
-    std::ifstream file = getFile(inDeviceInfo);
-    if (file.is_open()) {
-        getline(file, ret);
+    String ret = "";
+    File file = getFile(inDeviceInfo);
+    if (file) {
+        ret = file.readStringUntil('\n');
         file.close();
     }
     return ret;

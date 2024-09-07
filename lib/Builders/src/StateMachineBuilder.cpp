@@ -12,6 +12,10 @@ namespace MaskUP
 namespace Build
 {
 
+StateMachineBuilder* reset(const std::vector<::MaskUP::Enum::Component>& inMandatories)
+{
+    m_isReset = true;
+}
 
 StateMachineBuilder* StateMachineBuilder::buildESP32()
 {

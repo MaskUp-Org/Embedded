@@ -9,7 +9,8 @@
 
 #include <Arduino.h>
 #include <iostream>
-#include <fstream>
+//#include <fstream>
+#include "LittleFS.h"
 #include <string>
 
 namespace MaskUP
@@ -17,7 +18,7 @@ namespace MaskUP
 namespace Tools
 {
 
-std::ifstream getFile(const String& inFilePath);
+File getFile(const String& inFilePath);
 
 
 /**
