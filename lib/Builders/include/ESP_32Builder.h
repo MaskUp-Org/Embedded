@@ -25,9 +25,6 @@ namespace Build
 class ESP_32Builder : public IBuilder <::MaskUP::Component::ESP_32>
 {
 public:
-
-    ESP_32Builder();
-
     /* @brief First function to be called when building an object. It must returns raw pointer to the builder itself
     *
     * @return ESP_32Builder *

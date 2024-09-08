@@ -202,7 +202,6 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
     }
     else
     {
-
         processNotOkResponse(inReturnValue);
     }
 

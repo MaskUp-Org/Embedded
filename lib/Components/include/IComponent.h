@@ -19,7 +19,7 @@ class IComponent
 {
 public:
 
-    virtual ~IComponent() {}
+    virtual ~IComponent() = default;
     /**
      * @brief Setup the component
      * @param inPin : Pin number physically connected to the component

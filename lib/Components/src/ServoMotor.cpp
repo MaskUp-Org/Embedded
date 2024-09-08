@@ -10,13 +10,13 @@ namespace MaskUP
 {
 namespace Component
 {
+
 ServoMotor::ServoMotor() :
     IComponent()
 {
 
 }
-ServoMotor::~ServoMotor()
-{}
+
 void ServoMotor::setup(const uint8_t inPin)
 {
     m_pServo->attach(inPin);

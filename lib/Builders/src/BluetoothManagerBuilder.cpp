@@ -28,6 +28,7 @@ BluetoothManagerBuilder* BluetoothManagerBuilder::setup(const uint32_t inSerial)
 {
     String deviceName = ::MaskUP::Tools::getDeviceInformation("DeviceName");
     m_pBluetoothManager->setup(inSerial, deviceName);
+    return this;
 }
 
 std::unique_ptr <::MaskUP::Communication::BluetoothManager> BluetoothManagerBuilder::build()
@@ -42,6 +43,7 @@ std::unique_ptr <::MaskUP::Communication::BluetoothManager> BluetoothManagerBuil
         std::cout << "BluetoothManagerBuilder error : Cannot build BluetoothManager.\n";
         return nullptr;
     }
+    return nullptr;
 }
 
 }

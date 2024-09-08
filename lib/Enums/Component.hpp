@@ -9,6 +9,7 @@
 
 #include <string>
 #include <cstring>
+#include <Arduino.h>
 namespace MaskUP
 {
 namespace Enum
@@ -30,7 +31,7 @@ enum class Component
     END
 };
 
-Component fromStringToComponent(String inComponent)
+inline Component fromStringToComponent(String inComponent)
 {
     std::string tmp = strdup(inComponent.c_str());
 

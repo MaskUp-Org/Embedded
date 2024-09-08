@@ -29,6 +29,13 @@ EmergencyButtonBuilder* EmergencyButtonBuilder::setup(uint8_t inPin, uint8_t inM
     return this;
 }
 
+EmergencyButtonBuilder *EmergencyButtonBuilder::buildStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
+{
+    m_pEmergencyButton->registerStateMachine(inpStateMachine);
+    return this;
+}
+
+
 std::unique_ptr <::MaskUP::Communication::EmergencyButton> EmergencyButtonBuilder::build()
 {
     if (m_isReset == true)

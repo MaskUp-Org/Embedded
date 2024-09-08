@@ -19,10 +19,6 @@ ICommunication::ICommunication() :
 {
 
 }
-ICommunication::~ICommunication()
-{
-
-}
 
 void ICommunication::registerStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
 {
@@ -60,6 +56,11 @@ void ICommunication::request(const ::MaskUP::Enum::Component inComponent, const 
 void ICommunication::request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest)
 {
     m_pStateMachine->registerRequest(inComponent, inRequest);
+}
+
+void ICommunication::setStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
+{
+    m_pStateMachine = inpStateMachine;
 }
 
 }

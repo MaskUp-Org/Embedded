@@ -82,7 +82,7 @@ private:
 
 public:
     void setRequiredComponentsToStart();
-    void setm_allowedComponentsToRequest();
+    void setAllowedComponentsToRequest();
 
 
 };

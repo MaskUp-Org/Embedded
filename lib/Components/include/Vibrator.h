@@ -13,7 +13,7 @@ namespace MaskUP
 namespace Component
 {
 
-class Vibrator : public IComponent
+class Vibrator final : public IComponent
 {
 public:
 
@@ -39,7 +39,7 @@ public:
     * @brief Stop the component
     *
     */
-    virtual void stop() = 0;
+    virtual void stop() override;
 
     void setSide(::MaskUP::Enum::Side inSide);
 

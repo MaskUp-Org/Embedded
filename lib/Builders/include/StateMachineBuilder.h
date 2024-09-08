@@ -31,11 +31,11 @@ namespace Build
 class StateMachineBuilder : public IBuilder<::MaskUP::StateMachine::StateMachine>
 {
 public:
-    virtual StateMachineBuilder* reset() = 0;
-    StateMachineBuilder* reset(const std::vector<::MaskUP::Enum::Component>& inMandatories);
+
+    virtual StateMachineBuilder* reset() override;
+    //StateMachineBuilder* reset(const std::vector<::MaskUP::Enum::Component>& inMandatories);
 
     StateMachineBuilder* setMandatoryComponents();
-    StateMachineBuilder* setAllowedComponents();
     StateMachineBuilder* buildESP32();
     StateMachineBuilder* buildLeftVibrator();
     StateMachineBuilder* buildRightVibrator();

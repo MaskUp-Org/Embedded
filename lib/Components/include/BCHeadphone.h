@@ -14,7 +14,7 @@ namespace MaskUP
 namespace Component
 {
 
-class BCHeadphone : public IComponent
+class BCHeadphone final : public IComponent
 {
 public:
 
@@ -29,13 +29,13 @@ public:
      * @brief Run the component.
      *
      */
-    virtual void run() = 0;
+    virtual void run() override;
 
     /**
     * @brief Stop the component
     *
     */
-    virtual void stop() = 0;
+    virtual void stop() override;
 
     void setSide(::MaskUP::Enum::Side inSide);
 
