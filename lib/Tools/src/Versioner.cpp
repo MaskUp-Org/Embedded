@@ -12,33 +12,33 @@ namespace MaskUP
 namespace Tools
 {
 
-std::string Versioner::getVersion () 
+String Versioner::getVersion()
 {
-    std::string ret;
-    ret.append (m_major).append (".")
-        .append (m_minor).append (".")
-        .append (m_fix);
+    String ret;
+    ret += m_major += String(".")
+        += m_minor += String(".")
+        += m_fix;
     return ret;
 }
 
-std::vector <char *>split (const char *inStr, char *splitter)
+std::vector <char*>split(const char* inStr, char* splitter)
 {
-    std::vector<char *> ret;
-    ret.push_back (strtok (strdup (inStr), splitter));
+    std::vector<char*> ret;
+    ret.push_back(strtok(strdup(inStr), splitter));
 
-    char *tmp = nullptr;
-    while ((tmp = strtok (nullptr, splitter)) != nullptr)
+    char* tmp = nullptr;
+    while ((tmp = strtok(nullptr, splitter)) != nullptr)
     {
         ret.push_back(tmp);
     }
     return ret;
 }
 
-bool Versioner::setVersion (const std::string &inVersion)
+bool Versioner::setVersion(const String& inVersion)
 {
-    char *major = strtok(strdup (inVersion.c_str()), ".");
-    char *minor = strtok(nullptr, ".");
-    char *fix = strtok(nullptr, ".");
+    char* major = strtok(strdup(inVersion.c_str()), ".");
+    char* minor = strtok(nullptr, ".");
+    char* fix = strtok(nullptr, ".");
 
     if (major == nullptr || minor == nullptr || fix == nullptr)
     {

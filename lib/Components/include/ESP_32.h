@@ -12,6 +12,7 @@
 #include "Enums.h"
 #include "Versioner.h"
 
+
 namespace MaskUP
 {
 namespace Component
@@ -22,15 +23,18 @@ class ESP_32
 
 public:
     ESP_32();
-    std::string getDeviceName();
-    void setDeviceName(const std::string &inDeviceName);
-    void setDeviceVersion(const std::string &inDeviceVersion);
+    String getDeviceName();
+    void setDeviceName(const String& inDeviceName);
+    void setDeviceVersion(const String& inDeviceVersion);
 
     ::MaskUP::Enum::Component m_id;
     ::MaskUP::Enum::State m_state;
+    bool componentIsReady();
+
+    bool m_ready = false;
 
 private:
-    std::string m_deviceName;
+    String m_deviceName;
     ::MaskUP::Tools::Versioner m_version;
 
 };

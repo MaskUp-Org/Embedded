@@ -10,8 +10,16 @@
 #include "StateMachine.h"
 #include "IBuilder.h"
 #include "needed.hpp"
-#include "JsonReader.h"
-#include "Component.hpp"
+#include "FileReader.h"
+#include "Enums.h"
+
+
+#include "ESP_32Builder.h"
+#include "ServoMotorBuilder.h"
+#include "VibratorBuilder.h"
+#include "BCHeadPhoneBuilder.h"
+
+
 
 #include <vector>
 #include <memory>
@@ -23,23 +31,29 @@ namespace Build
 class StateMachineBuilder : public IBuilder<::MaskUP::StateMachine::StateMachine>
 {
 public:
-    virtual StateMachineBuilder* reset() override;
 
-    ::MaskUP::StateMachine::StateMachine* assignESP32();
-    ::MaskUP::StateMachine::StateMachine* setMandatoryComponents();
-    ::MaskUP::StateMachine::StateMachine* assignLeftVibrator();
-    ::MaskUP::StateMachine::StateMachine* assignRightVibrator();
-    ::MaskUP::StateMachine::StateMachine* assignLeftBCHeadPhone();
-    ::MaskUP::StateMachine::StateMachine* assignRightBCHeadPhone();
-    ::MaskUP::StateMachine::StateMachine* assignServomotor();
-    ::MaskUP::StateMachine::StateMachine* assignEmergencyButton();
+    virtual StateMachineBuilder* reset() override;
+    //StateMachineBuilder* reset(const std::vector<::MaskUP::Enum::Component>& inMandatories);
+
+    StateMachineBuilder* setMandatoryComponents();
+    StateMachineBuilder* buildESP32();
+    StateMachineBuilder* buildLeftVibrator();
+    StateMachineBuilder* buildRightVibrator();
+    StateMachineBuilder* buildLeftBCHeadPhone();
+    StateMachineBuilder* buildRightBCHeadPhone();
+    StateMachineBuilder* buildServomotor();
+    StateMachineBuilder* addCallbackFunctions();
+    StateMachineBuilder* setRequiredComponentsToStart();
+    StateMachineBuilder* setAllowedComponentsToRequest();
 
     virtual std::unique_ptr<::MaskUP::StateMachine::StateMachine> build() override;
+
+
 
 private:
     std::unique_ptr<::MaskUP::StateMachine::StateMachine> m_pStateMachine;
     std::vector<::MaskUP::Enum::Component> m_mandatoriesComponents;
-    ::MaskUP::Tools::JsonReader m_fileReader;
+    bool m_isReset;
 };
 }
 }

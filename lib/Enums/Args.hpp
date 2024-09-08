@@ -16,6 +16,8 @@ enum class Args
     UNKNOWN,
     INT,
     STR,
+    POSITION,
+    SIDE,
     NONE,
 
     END

@@ -20,14 +20,14 @@ namespace Build
 class BCHeadphoneBuilder : public IBuilder <::MaskUP::Component::BCHeadphone>
 {
 public:
-    virtual BCHeadphoneBuilder *reset () override ;
-    BCHeadphoneBuilder *assignSide (const ::MaskUP::Enum::Side inSide) ;
+    virtual BCHeadphoneBuilder* reset() override;
+    BCHeadphoneBuilder* assignSide(const ::MaskUP::Enum::Side inSide);
 
-    virtual std::unique_ptr <::MaskUP::Component::BCHeadphone> build () override;
+    virtual std::unique_ptr <::MaskUP::Component::BCHeadphone> build() override;
 
 private:
-
     std::unique_ptr <::MaskUP::Component::BCHeadphone> m_pBCHeadphone;
+    bool m_isReset;
 
 };
 }

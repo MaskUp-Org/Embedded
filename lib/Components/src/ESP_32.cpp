@@ -12,22 +12,27 @@ namespace MaskUP
 namespace Component
 {
 
-ESP_32::ESP_32() {
+ESP_32::ESP_32() :
+    m_ready(true)
+{
 }
 
-std::string ESP_32::getDeviceName ()
+String ESP_32::getDeviceName()
 {
     return m_deviceName;
 }
-void ESP_32::setDeviceName(const std::string &inDeviceName)
+void ESP_32::setDeviceName(const String& inDeviceName)
 {
     m_deviceName = inDeviceName;
 }
 
-void ESP_32::setDeviceVersion(const std::string &inDeviceVersion)
+void ESP_32::setDeviceVersion(const String& inDeviceVersion)
 {
     m_version.setVersion(inDeviceVersion);
 }
-
+bool ESP_32::componentIsReady()
+{
+    return m_ready;
+}
 }
 }

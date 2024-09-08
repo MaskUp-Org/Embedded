@@ -16,29 +16,31 @@ namespace MaskUP
 namespace Component
 {
 
-class ServoMotor : public IComponent
+class ServoMotor final : public IComponent
 {
 public:
 
-    virtual void setup (uint8_t inPin, uint8_t inMode)  = 0;
-    void setup (uint8_t inPin);
+    ServoMotor();
+    //~ServoMotor();
+
+    virtual void setup(uint8_t, uint8_t) {};
+    void setup(uint8_t inPin);
 
 
     /**
      * @brief Run the component.
      *
      */
-    virtual void run () = 0;
+    virtual void run() {};
 
     /**
     * @brief Stop the component
     *
     */
-    virtual void stop () = 0;
+    virtual void stop() {};
 
-    void changePosition (const ::MaskUP::Enum::Position inPosition);
+    void changePosition(const ::MaskUP::Enum::Position inPosition);
 
-    ::MaskUP::Enum::State m_state;
 
 private:
     ::MaskUP::Enum::Position m_position;

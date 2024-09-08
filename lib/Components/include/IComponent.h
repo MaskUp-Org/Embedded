@@ -19,26 +19,33 @@ class IComponent
 {
 public:
 
+    virtual ~IComponent() = default;
     /**
      * @brief Setup the component
      * @param inPin : Pin number physically connected to the component
      * @param inMode : INPUT or OUTPUT
      *
      */
-    virtual void setup (uint8_t inPin, uint8_t inMode) = 0;
+    virtual void setup(uint8_t inPin, uint8_t inMode) = 0;
 
     /**
      * @brief Run the component.
      *
      */
-    virtual void run () = 0;
+    virtual void run() = 0;
 
     /**
      * @brief Stop the component
      *
      */
-    virtual void stop () = 0;
+    virtual void stop() = 0;
 
+    bool componentIsReady()
+    {
+        return m_ready;
+    }
+
+    bool m_ready = false;
     ::MaskUP::Enum::State m_state;
 
 };

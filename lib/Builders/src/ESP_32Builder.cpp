@@ -7,6 +7,7 @@
 
 #include "ESP_32Builder.h"
 #include <iostream>
+#include <Arduino.h>
 
 
 namespace MaskUP
@@ -14,32 +15,33 @@ namespace MaskUP
 namespace Build
 {
 
-ESP_32Builder *ESP_32Builder::reset ()
+ESP_32Builder* ESP_32Builder::reset()
 {
-    m_pEsp32 = ::MaskUP::Tools::make_unique <::MaskUP::Component::ESP_32> ();
+    m_pEsp32 = ::MaskUP::Tools::make_unique <::MaskUP::Component::ESP_32>();
     m_isReset = true;
 
     return this;
 }
 
-ESP_32Builder *ESP_32Builder::buildDeviceName(const std::string &inDeviceName)
+ESP_32Builder* ESP_32Builder::buildDeviceName(const String& inDeviceName)
 {
-    m_pEsp32->m_deviceName = inDeviceName;
+
+    m_pEsp32->setDeviceName(inDeviceName);
     return this;
 }
 
-ESP_32Builder *ESP_32Builder::buildVersion(const std::string &inDeviceName)
+ESP_32Builder* ESP_32Builder::buildDeviceVersion(const String& inDeviceVersion)
 {
-    m_pEsp32->m_deviceName = inDeviceName;
+    m_pEsp32->setDeviceVersion(inDeviceVersion);
     return this;
 }
 
-std::unique_ptr <::MaskUP::Component::ESP_32> ESP_32Builder::build ()
+std::unique_ptr <::MaskUP::Component::ESP_32> ESP_32Builder::build()
 {
     if (m_isReset == true)
     {
         m_isReset = false;
-        return std::move (m_pEsp32);
+        return std::move(m_pEsp32);
     }
     else
     {

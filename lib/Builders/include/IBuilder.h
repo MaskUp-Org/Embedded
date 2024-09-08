@@ -19,6 +19,10 @@ class IBuilder
 {
 
 public:
+
+    IBuilder () = default;
+    ~IBuilder () = default;
+
     /**
      * @brief First function to be called when building an object. It must returns raw pointer to the builder itself
      *

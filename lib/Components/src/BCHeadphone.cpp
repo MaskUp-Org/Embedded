@@ -11,21 +11,29 @@ namespace MaskUP
 {
 namespace Component
 {
-    
-void BCHeadphone::setup (uint8_t inPin, uint8_t inMode)
+
+void BCHeadphone::setup(uint8_t inPin, uint8_t inMode)
 {
-    (void) inPin;
-    (void) inMode;
+    (void)inPin;
+    (void)inMode;
     std::cout << "BCHeadphone::run.\n";
 }
-void BCHeadphone::run ()
+void BCHeadphone::run()
 {
     std::cout << "BCHeadphone::run.\n";
 }
 
-void BCHeadphone::stop ()
+void BCHeadphone::stop()
 {
     std::cout << "BCHeadphone::stop.\n";
+}
+
+void BCHeadphone::setSide(const ::MaskUP::Enum::Side inSide)
+{
+    if (inSide != ::MaskUP::Enum::Side::END || inSide != ::MaskUP::Enum::Side::UNKNOWN)
+    {
+        m_side = inSide;
+    }
 }
 
 }
