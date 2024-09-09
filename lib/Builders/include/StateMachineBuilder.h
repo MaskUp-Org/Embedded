@@ -12,6 +12,7 @@
 #include "needed.hpp"
 #include "FileReader.h"
 #include "Enums.h"
+#include "IResponse.h"
 
 
 #include "ESP_32Builder.h"
@@ -45,6 +46,8 @@ public:
     StateMachineBuilder* addCallbackFunctions();
     StateMachineBuilder* setRequiredComponentsToStart();
     StateMachineBuilder* setAllowedComponentsToRequest();
+    StateMachineBuilder* setResponseManager(std::shared_ptr <::MaskUP::Communication::IResponse> inResponseManager);
+
 
     virtual std::unique_ptr<::MaskUP::StateMachine::StateMachine> build() override;
 

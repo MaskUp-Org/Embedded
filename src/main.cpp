@@ -19,7 +19,7 @@
 #include <Arduino.h>
 #include <memory>
 
-//Those three objects will manage everything
+ //Those three objects will manage everything
 std::shared_ptr <::MaskUP::StateMachine::StateMachine> pStateMachine;
 std::shared_ptr <::MaskUP::Communication::EmergencyButton> pEmergencyButton;
 std::shared_ptr <::MaskUP::Communication::BluetoothManager> pBluetoothManager;
@@ -34,32 +34,32 @@ void setup()
     //////////////////////////////////////////////////
 
     Serial.begin(serialValue);
-    String devicename = ::MaskUP::Tools::getDeviceInformation("DeviceName");
+    String devicename = ::MaskUP::Tools::getDeviceInformation("/DeviceName");
 
     pStateMachine = ::MaskUP::Build::StateMachineBuilder()
-                    .reset ()
-                    ->setRequiredComponentsToStart()
-                    ->setMandatoryComponents()
-                    ->setAllowedComponentsToRequest()
-                    ->buildESP32()
-                    ->buildLeftVibrator()
-                    ->buildRightVibrator()
-                    ->buildServomotor()
-                    ->build();
+        .reset()
+        ->setRequiredComponentsToStart()
+        ->setMandatoryComponents()
+        ->setAllowedComponentsToRequest()
+        ->buildESP32()
+        ->buildLeftVibrator()
+        ->buildRightVibrator()
+        ->buildServomotor()
+        ->build();
 
     pEmergencyButton = ::MaskUP::Build::EmergencyButtonBuilder()
-                       .reset()
-                       ->setup(emergencyButtonPin, INPUT_PULLUP)
-                       ->buildStateMachine(pStateMachine)
-                       ->build();
+        .reset()
+        ->setup(emergencyButtonPin, INPUT_PULLUP)
+        ->buildStateMachine(pStateMachine)
+        ->build();
 
     pBluetoothManager = ::MaskUP::Build::BluetoothManagerBuilder()
-                        .reset()
-                        ->setup(serialValue)
-                        ->build();
+        .reset()
+        ->setup(serialValue)
+        ->build();
 }
 
 void loop()
 {
-
+    Serial.print("Hello");
 }

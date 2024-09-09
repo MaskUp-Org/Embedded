@@ -26,6 +26,11 @@ void ESP_32::setDeviceName(const String& inDeviceName)
     m_deviceName = inDeviceName;
 }
 
+String ESP_32::getDeviceVersion()
+{
+    return m_version.getVersion();
+}
+
 void ESP_32::setDeviceVersion(const String& inDeviceVersion)
 {
     m_version.setVersion(inDeviceVersion);

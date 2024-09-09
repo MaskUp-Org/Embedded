@@ -1,0 +1,135 @@
+Date : 2024-09-09 00:21:00
+Directory : c:\Users\wypho\Desktop\code\Embedded
+Total : 77 files,  4177 codes, 990 comments, 959 blanks, all 6126 lines
+
+Languages
++--------------+------------+------------+------------+------------+------------+
+| language     | files      | code       | comment    | blank      | total      |
++--------------+------------+------------+------------+------------+------------+
+| C++          |         72 |      4,062 |        978 |        917 |      5,957 |
+| Markdown     |          1 |         65 |          0 |         30 |         95 |
+| Shell Script |          1 |         26 |          1 |          5 |         32 |
+| Properties   |          1 |         10 |          0 |          2 |         12 |
+| Ini          |          1 |          8 |         11 |          4 |         23 |
+| CSV          |          1 |          6 |          0 |          1 |          7 |
++--------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                       | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                          |         77 |      4,177 |        990 |        959 |      6,126 |
+| . (Files)                                                                                                                  |          2 |         14 |         11 |          5 |         30 |
+| ESP32Servo                                                                                                                 |         13 |      1,016 |        420 |        185 |      1,621 |
+| ESP32Servo (Files)                                                                                                         |          3 |        101 |          1 |         37 |        139 |
+| ESP32Servo\examples                                                                                                        |          6 |        256 |        181 |         46 |        483 |
+| ESP32Servo\examples\Knob                                                                                                   |          1 |         27 |         51 |          8 |         86 |
+| ESP32Servo\examples\Multiple-Servo-Example-Arduino                                                                         |          1 |         97 |         49 |         17 |        163 |
+| ESP32Servo\examples\PWMExample                                                                                             |          1 |         26 |          8 |          3 |         37 |
+| ESP32Servo\examples\Sweep                                                                                                  |          1 |         28 |         47 |          8 |         83 |
+| ESP32Servo\examples\ToneExample                                                                                            |          1 |         16 |          5 |          5 |         26 |
+| ESP32Servo\examples\analogWriteExample                                                                                     |          1 |         62 |         21 |          5 |         88 |
+| ESP32Servo\src                                                                                                             |          4 |        659 |        238 |        102 |        999 |
+| lib                                                                                                                        |         61 |      3,106 |        550 |        754 |      4,410 |
+| lib\Builders                                                                                                               |         15 |        512 |        110 |        153 |        775 |
+| lib\Builders\include                                                                                                       |          8 |        192 |         68 |         76 |        336 |
+| lib\Builders\src                                                                                                           |          7 |        320 |         42 |         77 |        439 |
+| lib\Communications                                                                                                         |          7 |        385 |         61 |        105 |        551 |
+| lib\Communications\include                                                                                                 |          4 |         91 |         30 |         42 |        163 |
+| lib\Communications\src                                                                                                     |          3 |        294 |         31 |         63 |        388 |
+| lib\Components                                                                                                             |         11 |        251 |        119 |        100 |        470 |
+| lib\Components\include                                                                                                     |          6 |        125 |         89 |         68 |        282 |
+| lib\Components\src                                                                                                         |          5 |        126 |         30 |         32 |        188 |
+| lib\Enums                                                                                                                  |         12 |        429 |         60 |         76 |        565 |
+| lib\StateMachine                                                                                                           |          4 |        393 |         36 |         65 |        494 |
+| lib\StateMachine\include                                                                                                   |          2 |         77 |         16 |         31 |        124 |
+| lib\StateMachine\src                                                                                                       |          2 |        316 |         20 |         34 |        370 |
+| lib\Tools                                                                                                                  |         12 |      1,136 |        164 |        255 |      1,555 |
+| lib\Tools\include                                                                                                          |          7 |        259 |         88 |         76 |        423 |
+| lib\Tools\src                                                                                                              |          5 |        877 |         76 |        179 |      1,132 |
+| src                                                                                                                        |          1 |         41 |          9 |         15 |         65 |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------------+--------------+------------+------------+------------+------------+
+| filename                                                                                                                   | language     | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+--------------+------------+------------+------------+------------+
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\AddDoxygenToGHPages.sh                                                     | Shell Script |         26 |          1 |          5 |         32 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\README.md                                                                  | Markdown     |         65 |          0 |         30 |         95 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\examples\Knob\Knob.ino                                                     | C++          |         27 |         51 |          8 |         86 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\examples\Multiple-Servo-Example-Arduino\Multiple-Servo-Example-Arduino.ino | C++          |         97 |         49 |         17 |        163 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\examples\PWMExample\PWMExample.ino                                         | C++          |         26 |          8 |          3 |         37 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\examples\Sweep\Sweep.ino                                                   | C++          |         28 |         47 |          8 |         83 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\examples\ToneExample\ToneExample.ino                                       | C++          |         16 |          5 |          5 |         26 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\examples\analogWriteExample\analogWriteExample.ino                         | C++          |         62 |         21 |          5 |         88 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\library.properties                                                         | Properties   |         10 |          0 |          2 |         12 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\src\ESP32PWM.cpp                                                           | C++          |        333 |         49 |         30 |        412 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\src\ESP32PWM.h                                                             | C++          |        103 |         21 |         20 |        144 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\src\ESP32Servo.cpp                                                         | C++          |        166 |         68 |         37 |        271 |
+| c:\Users\wypho\Desktop\code\Embedded\ESP32Servo\src\ESP32Servo.h                                                           | C++          |         57 |        100 |         15 |        172 |
+| c:\Users\wypho\Desktop\code\Embedded\huge_app.csv                                                                          | CSV          |          6 |          0 |          1 |          7 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\BCHeadPhoneBuilder.h                                             | C++          |         22 |          6 |          6 |         34 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\BluetoothManagerBuilder.h                                        | C++          |         22 |          6 |          9 |         37 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\ESP_32Builder.h                                                  | C++          |         24 |         15 |         14 |         53 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\EmergencyButtonBuilder.h                                         | C++          |         23 |          6 |          8 |         37 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\IBuilder.h                                                       | C++          |         17 |         16 |          9 |         42 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\ServoMotorBuilder.h                                              | C++          |         22 |          6 |          8 |         36 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\StateMachineBuilder.h                                            | C++          |         40 |          7 |         15 |         62 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\include\VibratorBuilder.h                                                | C++          |         22 |          6 |          7 |         35 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\src\BCHeadPhoneBuilder.cpp                                               | C++          |         33 |          6 |         10 |         49 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\src\BluetoothManagerBuilder.cpp                                          | C++          |         36 |          6 |          9 |         51 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\src\ESP_32Builder.cpp                                                    | C++          |         38 |          6 |         10 |         54 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\src\EmergencyButtonBuilder.cpp                                           | C++          |         38 |          6 |         11 |         55 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\src\ServoMotorBuilder.cpp                                                | C++          |         33 |          6 |          8 |         47 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\src\StateMachineBuilder.cpp                                              | C++          |        109 |          6 |         19 |        134 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Builders\src\VibratorBuilder.cpp                                                  | C++          |         33 |          6 |         10 |         49 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Communications\include\BluetoothManager.h                                         | C++          |         29 |         12 |         16 |         57 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Communications\include\EmergencyButton.h                                          | C++          |         20 |         12 |         10 |         42 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Communications\include\ICommunication.h                                           | C++          |         24 |          6 |         10 |         40 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Communications\include\IResponse.h                                                | C++          |         18 |          0 |          6 |         24 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Communications\src\BluetoothManager.cpp                                           | C++          |        217 |         15 |         39 |        271 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Communications\src\EmergencyButton.cpp                                            | C++          |         29 |          9 |         11 |         49 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Communications\src\ICommunication.cpp                                             | C++          |         48 |          7 |         13 |         68 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\include\BCHeadphone.h                                                  | C++          |         17 |         19 |         11 |         47 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\include\Battery.h                                                      | C++          |         14 |         11 |          9 |         34 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\include\ESP_32.h                                                       | C++          |         26 |          6 |         11 |         43 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\include\IComponent.h                                                   | C++          |         23 |         20 |         12 |         55 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\include\ServoMotor.h                                                   | C++          |         24 |         14 |         13 |         51 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\include\Vibrator.h                                                     | C++          |         21 |         19 |         12 |         52 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\src\BCHeadphone.cpp                                                    | C++          |         29 |          5 |          7 |         41 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\src\Battery.cpp                                                        | C++          |         14 |          9 |          6 |         29 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\src\ESP_32.cpp                                                         | C++          |         27 |          6 |          5 |         38 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\src\ServoMotor.cpp                                                     | C++          |         22 |          5 |          6 |         33 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Components\src\Vibrator.cpp                                                       | C++          |         34 |          5 |          8 |         47 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Args.hpp                                                                    | C++          |         17 |          5 |          5 |         27 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Caller.hpp                                                                  | C++          |         14 |          5 |          5 |         24 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Component.hpp                                                               | C++          |         71 |          5 |          7 |         83 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Enums.h                                                                     | C++          |         11 |          0 |          1 |         12 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\FileType.hpp                                                                | C++          |         13 |          5 |          4 |         22 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Json.hpp                                                                    | C++          |         62 |          7 |         11 |         80 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Position.hpp                                                                | C++          |         89 |          8 |         12 |        109 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Priority.hpp                                                                | C++          |         14 |          5 |          3 |         22 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Request.hpp                                                                 | C++          |         49 |          5 |          8 |         62 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Return.hpp                                                                  | C++          |         59 |          5 |         11 |         75 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\Side.hpp                                                                    | C++          |         14 |          5 |          4 |         23 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Enums\State.hpp                                                                   | C++          |         16 |          5 |          5 |         26 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\StateMachine\include\Request.h                                                    | C++          |         20 |          5 |          7 |         32 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\StateMachine\include\StateMachine.h                                               | C++          |         57 |         11 |         24 |         92 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\StateMachine\src\Request.cpp                                                      | C++          |         21 |          5 |          5 |         31 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\StateMachine\src\StateMachine.cpp                                                 | C++          |        295 |         15 |         29 |        339 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\include\FS.h                                                                | C++          |         87 |         19 |         25 |        131 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\include\FSImpl.h                                                            | C++          |         47 |         19 |          7 |         73 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\include\FileReader.h                                                        | C++          |         13 |         10 |          8 |         31 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\include\LittleFS.h                                                          | C++          |         21 |         13 |          9 |         43 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\include\Versioner.h                                                         | C++          |         20 |          6 |          6 |         32 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\include\needed.hpp                                                          | C++          |         14 |          8 |          7 |         29 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\include\vfs_api.h                                                           | C++          |         57 |         13 |         14 |         84 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\src\FS.cpp                                                                  | C++          |        234 |         20 |         59 |        313 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\src\FileReader.cpp                                                          | C++          |         23 |          8 |          5 |         36 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\src\LittleFS.cpp                                                            | C++          |        113 |         13 |         23 |        149 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\src\Versioner.cpp                                                           | C++          |         45 |          5 |          8 |         58 |
+| c:\Users\wypho\Desktop\code\Embedded\lib\Tools\src\vfs_api.cpp                                                             | C++          |        462 |         30 |         84 |        576 |
+| c:\Users\wypho\Desktop\code\Embedded\platformio.ini                                                                        | Ini          |          8 |         11 |          4 |         23 |
+| c:\Users\wypho\Desktop\code\Embedded\src\main.cpp                                                                          | C++          |         41 |          9 |         15 |         65 |
+| Total                                                                                                                      |              |      4,177 |        990 |        959 |      6,126 |
++----------------------------------------------------------------------------------------------------------------------------+--------------+------------+------------+------------+------------+

@@ -103,10 +103,10 @@ void BluetoothManager::processIncomingData(String message)
         case ::MaskUP::Enum::Action::DIRECTION:
         {
 
-            if (value == "left")
+            if (value == "LEFT")
                 request(Enum::Component::SERVOMOTOR, ::MaskUP::Enum::Request::RUN_VIBRATOR, ::MaskUP::Enum::Side::LEFT);
 
-            else if (value == "right")
+            else if (value == "RIGHT")
                 request(Enum::Component::SERVOMOTOR, ::MaskUP::Enum::Request::RUN_VIBRATOR, ::MaskUP::Enum::Side::RIGHT);
 
             break;
@@ -217,8 +217,10 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
         switch (inRequest)
         {
         case ::MaskUP::Enum::Request::GET_DEVICE_VERSION:
+            response = "RSP:OK:DEVICEVERSION:" + value;
+            break;
         case ::MaskUP::Enum::Request::GET_DEVICE_NAME:
-            response = "RSP:OK:" + value;
+            response = "RSP:OK:DEVICENAME:" + value;
             break;
 
         default:
@@ -241,10 +243,10 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
         switch (inRequest)
         {
         case ::MaskUP::Enum::Request::GET_BATTERY_PERCENTAGE:
-            response = "RSP:OK:" + String(value);
+            response = "RSP:OK:BATTERYPERCENTAGE:" + String(value);
             break;
         case ::MaskUP::Enum::Request::GET_POSITION:
-            response = "RSP:OK:" + String(value);
+            response = "RSP:OK:SERVOMOTORPOSITION:" + String(value);
             break;
 
         default:

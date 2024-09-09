@@ -40,8 +40,7 @@ void StateMachine::clearQueue()
         default:
             //Every component has to switch to Error mode
             changeState(::MaskUP::Enum::State::ERROR);
-            // Now we can fix the issue
-            errorOccured(*m_emergencyRequest.begin(), val);
+            m_pResponseManager->processNotOkResponse(val);
             break;
         }
     }
@@ -66,8 +65,8 @@ void StateMachine::clearQueue()
         default:
             //Every component has to switch to Error mode
             changeState(::MaskUP::Enum::State::ERROR);
-            // Now we can fix the issue
-            errorOccured(*m_emergencyRequest.begin(), val);
+            // Now we notify the smartphone
+            m_pResponseManager->processNotOkResponse(val);
             break;
         }
     }
@@ -153,6 +152,18 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
             m_pEsp32->setDeviceVersion(inString);
             ret = ::MaskUP::Enum::ReturnValue::OK;
             break;
+        case ::MaskUP::Enum::Request::GET_DEVICE_NAME:
+            if (m_pEsp32)
+            {
+                m_pResponseManager->processRequestResponse(::MaskUP::Enum::ReturnValue::OK, ::MaskUP::Enum::Request::GET_DEVICE_NAME, m_pEsp32->getDeviceName());
+                ret = ::MaskUP::Enum::ReturnValue::OK;
+            }
+        case ::MaskUP::Enum::Request::GET_DEVICE_VERSION:
+            if (m_pEsp32)
+            {
+                m_pResponseManager->processRequestResponse(::MaskUP::Enum::ReturnValue::OK, ::MaskUP::Enum::Request::GET_DEVICE_VERSION, m_pEsp32->getDeviceVersion());
+                ret = ::MaskUP::Enum::ReturnValue::OK;
+            }
         default:
             break;
         }
@@ -216,6 +227,8 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
             m_pRightVibrator->run();
             m_pLeftVibrator->run();
             delay(500);
+            m_pRightVibrator->stop();
+            m_pLeftVibrator->stop();
         }
         ret = ::MaskUP::Enum::ReturnValue::OK;
     }
@@ -242,7 +255,7 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
 
 void StateMachine::setRequiredComponentsToStart()
 {
-    String components = ::MaskUP::Tools::getDeviceInformation("AllowedComponents");
+    String components = ::MaskUP::Tools::getDeviceInformation("/AllowedComponents");
     char* tmp = strtok(strdup(components.c_str()), ";");
     do
     {
@@ -259,7 +272,7 @@ void StateMachine::setRequiredComponentsToStart()
 
 void StateMachine::setAllowedComponentsToRequest()
 {
-    String components = ::MaskUP::Tools::getDeviceInformation("RequestComponents");
+    String components = ::MaskUP::Tools::getDeviceInformation("/RequestComponents");
     char* tmp = strtok(strdup(components.c_str()), ";");
     do
     {
@@ -329,6 +342,9 @@ void StateMachine::registerRequest(const ::MaskUP::Enum::Component inComponent, 
     req.m_argType = ::MaskUP::Enum::Args::NONE;
     m_standardRequest.push_back(req);
 }
-
+void StateMachine::addResponseManager(std::shared_ptr<::MaskUP::Communication::IResponse> inResponseManager)
+{
+    m_pResponseManager = inResponseManager;
+}
 }
 }

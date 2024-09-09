@@ -26,7 +26,7 @@ BluetoothManagerBuilder* BluetoothManagerBuilder::reset()
 
 BluetoothManagerBuilder* BluetoothManagerBuilder::setup(const uint32_t inSerial)
 {
-    String deviceName = ::MaskUP::Tools::getDeviceInformation("DeviceName");
+    String deviceName = ::MaskUP::Tools::getDeviceInformation("/DeviceName");
     m_pBluetoothManager->setup(inSerial, deviceName);
     return this;
 }

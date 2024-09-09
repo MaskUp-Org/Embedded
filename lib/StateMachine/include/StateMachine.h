@@ -13,6 +13,7 @@
 #include "BCHeadphone.h"
 #include "Battery.h"
 #include "ESP_32.h"
+#include "IResponse.h"
 #include "Request.h"
 #include "ServoMotor.h"
 #include "Vibrator.h"
@@ -40,8 +41,6 @@ private:
     bool isAllowed(const ::MaskUP::Enum::Component inComponent);
 
     ::MaskUP::Enum::ReturnValue act(const ::MaskUP::StateMachine::Request& inRequest);
-    ::MaskUP::Enum::ReturnValue errorOccured(const ::MaskUP::StateMachine::Request& inRequest, const ::MaskUP::Enum::ReturnValue);
-
     /**
      * Clear all queues, prioritize the emergency queue
      */
@@ -76,14 +75,14 @@ private:
     std::vector<::MaskUP::StateMachine::Request> m_emergencyRequest;
 
     std::shared_ptr<::MaskUP::Enum::State> m_pState;
-
+    std::shared_ptr<::MaskUP::Communication::IResponse>m_pResponseManager;
     std::vector<::MaskUP::Enum::Component> m_allowedComponentsToRequest;
     std::vector<::MaskUP::Enum::Component> m_requiredComponentsToStart;
 
 public:
     void setRequiredComponentsToStart();
     void setAllowedComponentsToRequest();
-
+    void addResponseManager(std::shared_ptr<::MaskUP::Communication::IResponse> inResponseManager);
 
 };
 

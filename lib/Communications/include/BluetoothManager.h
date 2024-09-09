@@ -9,6 +9,7 @@
 
 #include "Json.hpp"
 #include "ICommunication.h"
+#include "IResponse.h"
 #include "BluetoothSerial.h"
 #include <Arduino.h>
 #include <string>
@@ -18,7 +19,7 @@ namespace MaskUP
 namespace Communication
 {
 
-class BluetoothManager final : public ICommunication
+class BluetoothManager final : public ICommunication, public IResponse
 {
 public:
 
@@ -40,14 +41,13 @@ private:
 
     void processIncomingData(String incomingData);
 
-    void processNotOkResponse(Enum::ReturnValue inReturnValue);
+    void processNotOkResponse(Enum::ReturnValue inReturnValue) override;
 
-    void processRequestResponse(Enum::ReturnValue inReturnValue);
-    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, String value);
-    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, uint32_t value);
+    void processRequestResponse(Enum::ReturnValue inReturnValue) override;
+    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, String value) override;
+    void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, uint32_t value) override;
 
     void sendData(String jsonDoc);
-
 
     BluetoothSerial SerialBT;
 
