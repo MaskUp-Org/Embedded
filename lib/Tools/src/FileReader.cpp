@@ -6,18 +6,31 @@
  */
 
 #include "FileReader.h"
-
+#include <string>
 namespace MaskUP
 {
 namespace Tools
 {
 
+void initLittleSF() {
+    if (!LittleFS.begin()) {
+        throw std::runtime_error("LittleFS cannot begin.");
+    }
+    else {
+        delay(500);
+        Serial.println("LittleFS mounted successfully");
+    }
+}
+
 File getFile(const String& inFilePath)
 {
-    LittleFS.begin(true);
     File file = LittleFS.open(inFilePath.c_str(), "r+");
-    //std::ifstream file(nullptr);
-    //file.open(inFilePath, std::fstream::in | std::fstream::out);
+    if (!file)
+    {
+        LittleFS.end();
+        std::string out = ("Could not open file", inFilePath.c_str());
+        throw std::runtime_error(out);
+    }
     return file;
 }
 

@@ -6,7 +6,7 @@
 
 #include "EmergencyButton.h"
 #include <iostream>
-
+#include <Arduino.h>
 namespace MaskUP
 {
 namespace Communication
@@ -24,6 +24,7 @@ void EmergencyButton::setup(uint8_t inPin, uint8_t inMode)
 {
     //inmode = INPUT_PULLUP in all cases (i mean, litteraly), but i let you the choice
     pinMode(inPin, inMode);
+    // attachInterrupt(digitalPinToInterrupt(inPin), EmergencyButton::run, FALLING);
     m_pin = inPin;
 
     std::cout << "BCHeadphone::run.\n";
