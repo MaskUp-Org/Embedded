@@ -28,6 +28,7 @@ void Vibrator::setup(uint8_t inPin, uint8_t inMode)
 void Vibrator::run()
 {
     digitalWrite(m_pin, HIGH);
+    Serial.println("Vibrator");
 }
 
 void Vibrator::stop()

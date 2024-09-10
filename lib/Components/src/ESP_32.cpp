@@ -19,20 +19,25 @@ ESP_32::ESP_32() :
 
 String ESP_32::getDeviceName()
 {
+    Serial.println("getDeviceName");
     return m_deviceName;
 }
 void ESP_32::setDeviceName(const String& inDeviceName)
 {
     m_deviceName = inDeviceName;
+    Serial.println("SetDeviceName");
+
 }
 
 String ESP_32::getDeviceVersion()
 {
+    Serial.println("getDeviceVersion");
     return m_version.getVersion();
 }
 
 void ESP_32::setDeviceVersion(const String& inDeviceVersion)
 {
+    Serial.println("SetDeviceVersion");
     m_version.setVersion(inDeviceVersion);
 }
 bool ESP_32::componentIsReady()

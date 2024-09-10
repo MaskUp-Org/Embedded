@@ -22,6 +22,7 @@ void BluetoothManager::setup(const uint32_t inSerial, const String& inBTDeviceNa
 
 void BluetoothManager::loop()
 {
+    Serial.println("Bluetooth");
 
     if (SerialBT.available())
     {

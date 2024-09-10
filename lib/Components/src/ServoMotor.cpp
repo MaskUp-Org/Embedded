@@ -27,6 +27,7 @@ void ServoMotor::setup(const uint8_t inPin)
 
 void ServoMotor::changePosition(const ::MaskUP::Enum::Position inPosition)
 {
+    Serial.println("Servomotor");
     // uint16_t direction = ::MaskUP::Enum::positionToDirection(inPosition);
     // m_pServo->write(direction);
     delay(1000);

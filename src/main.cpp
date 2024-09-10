@@ -27,7 +27,7 @@ std::shared_ptr <::MaskUP::StateMachine::StateMachine> pStateMachine;
 std::shared_ptr <::MaskUP::Communication::EmergencyButton> pEmergencyButton;
 std::shared_ptr <::MaskUP::Communication::BluetoothManager> pBluetoothManager;
 
-// IRQ Manager, as we have a button, we have to work with the possibility of 10 requests in a row.
+// IRQ Manager, as we have a button, we have to work with the possibility of multiple requests in a row.
 bool irqReq = false;
 #define DEBOUNCE_DELAY 50
 uint64_t lastInterruptTime = 0;
