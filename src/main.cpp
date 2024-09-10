@@ -19,17 +19,32 @@
 #include <Arduino.h>
 #include <memory>
 #include <stdexcept>
+#include <thread>
+
 
  //Those three objects will manage everything
 std::shared_ptr <::MaskUP::StateMachine::StateMachine> pStateMachine;
 std::shared_ptr <::MaskUP::Communication::EmergencyButton> pEmergencyButton;
 std::shared_ptr <::MaskUP::Communication::BluetoothManager> pBluetoothManager;
 
+// IRQ Manager, as we have a button, we have to work with the possibility of 10 requests in a row.
+bool irqReq = false;
+#define DEBOUNCE_DELAY 50
+uint64_t lastInterruptTime = 0;
+
+void ebIrq() {
+    uint64_t currentTime = millis();
+    if ((currentTime - lastInterruptTime) > DEBOUNCE_DELAY) {
+        irqReq = true;
+    }
+    lastInterruptTime = currentTime;
+}
+
 
 void setup()
 {
     //////////// Can modify those values /////////////
-    uint8_t emergencyButtonPin = 0;
+    uint8_t emergencyButtonPin = 2;
     uint32_t serialValue = 115200;
     //////////////////////////////////////////////////
     Serial.begin(serialValue);
@@ -42,35 +57,19 @@ void setup()
     }
     Serial.println("getDeviceInfos");
 
-    String devicename = ::MaskUP::Tools::getDeviceInformation("/DeviceName");
+    // String devicename = ::MaskUP::Tools::getDeviceInformation("/DeviceName");
+
     Serial.println("Build StateMachine");
-    auto stateMachineBuilder = ::MaskUP::Build::StateMachineBuilder();
-    Serial.println("statemachineBuilder ::: reset");
-    stateMachineBuilder.reset();
-
-    Serial.println("statemachineBuilder ::: setRequiredComponentsToStart");
-    stateMachineBuilder.setRequiredComponentsToStart();
-
-    Serial.println("statemachineBuilder ::: setMandatoryComponents");
-    stateMachineBuilder.setMandatoryComponents();
-
-    Serial.println("statemachineBuilder ::: setAllowedComponentsToRequest");
-    stateMachineBuilder.setAllowedComponentsToRequest();
-
-    Serial.println("statemachineBuilder ::: buildESP32");
-    stateMachineBuilder.buildESP32();
-
-    Serial.println("statemachineBuilder ::: buildLeftVibrator");
-    stateMachineBuilder.buildLeftVibrator();
-
-    Serial.println("statemachineBuilder ::: buildRightVibrator");
-    stateMachineBuilder.buildRightVibrator();
-
-    Serial.println("statemachineBuilder ::: buildServomotor");
-    stateMachineBuilder.buildServomotor();
-
-    Serial.println("statemachineBuilder ::: Build");
-    pStateMachine = stateMachineBuilder.build();
+    pStateMachine = ::MaskUP::Build::StateMachineBuilder()
+        .reset()
+        ->setRequiredComponentsToStart()
+        ->setMandatoryComponents()
+        ->setAllowedComponentsToRequest()
+        ->buildESP32()
+        ->buildLeftVibrator()
+        ->buildRightVibrator()
+        ->buildServomotor()
+        ->build();
 
     if (pStateMachine == nullptr)
     {
@@ -78,6 +77,7 @@ void setup()
     }
 
     Serial.println("Build EmergencyButton");
+
     pEmergencyButton = ::MaskUP::Build::EmergencyButtonBuilder()
         .reset()
         ->setup(emergencyButtonPin, INPUT_PULLUP)
@@ -88,6 +88,8 @@ void setup()
         Serial.println("EmergencyButton not found.");
     }
 
+    attachInterrupt(digitalPinToInterrupt(pEmergencyButton->getPin()), ebIrq, FALLING);
+
     Serial.println("Build BluetoothManager");
     pBluetoothManager = ::MaskUP::Build::BluetoothManagerBuilder()
         .reset()
@@ -97,19 +99,22 @@ void setup()
     {
         Serial.println("BluetoothManager not found.");
     }
-    // }
-    // catch (const std::exception& e)
-    // {
-    //     Serial.println("--- Exception ---");
-    //     Serial.println(e.what());
-    //     Serial.println("--- ------ ---");
-    // }
-
 
 }
 
 void loop()
 {
-    Serial.println("Hello");
-    delay(1000);
+    if (irqReq == true)
+    {
+        pEmergencyButton->run();
+        irqReq = false;
+    }
+
+    auto btManager = pBluetoothManager;
+    std::thread bluetoothThread([btManager]() {
+        btManager->loop();
+        });
+
+    // Detach the thread to run independently
+    bluetoothThread.detach();
 }

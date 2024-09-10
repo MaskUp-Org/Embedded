@@ -20,7 +20,6 @@ class EmergencyButton : public ICommunication
 {
 public:
     EmergencyButton();
-    ~EmergencyButton();
     /**
      * @brief Setup the component
      * @param inPin : Pin number physically connected to the component
@@ -30,6 +29,8 @@ public:
     void setup(uint8_t inPin, uint8_t inMode);
 
     void run();
+
+    uint8_t getPin();
 
 
 private:
