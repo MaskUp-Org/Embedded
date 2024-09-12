@@ -96,6 +96,7 @@ void BluetoothManager::processIncomingData(String message)
     //      CMD:SET_DEVICE_NAME:MaskUP     RSP:OK                   RSP:EMPTY_QUEUE
     //      CMD:STOP_SOUND                 RSP:OK                   RSP:EMPTY_REQUEST
     //      CMD:RUN_SOUND                  RSP:OK                   RSP:UNKNOWN
+    //      CMD:RESET                      RSP:OK
     //      QRY:GET_BATTERY_PERCENTAGE     RSP:OK:85
     //      QRY:GET_ALTITUDE               RSP:OK:1000
     //      QRY:GET_VERSION                RSP:OK:1.5.3

@@ -75,6 +75,14 @@ void StateMachine::clearQueue()
             case ::MaskUP::Enum::ReturnValue::OK:
                 //Everything worked well, just clear the queue now
                 m_emergencyRequest.erase(m_emergencyRequest.begin());
+                if (m_emergencyRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_BATTERY_PERCENTAGE
+                    && m_emergencyRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_DEVICE_NAME
+                    && m_emergencyRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_DEVICE_VERSION
+                    && m_emergencyRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_POSITION
+                    )
+                {
+                    m_pResponseManager->processRequestResponse(val);
+                }
                 break;
                 // If anything bad happens, we need to return one of those Return values, and manage it correctly
             case ::MaskUP::Enum::ReturnValue::ERROR_OCCURED:
