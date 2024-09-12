@@ -32,6 +32,7 @@ enum class Action {
     GET_VERSION,
     GET_ALTITUDE,
     GET_BATTERY_PERCENTAGE,
+    RESET,
 
 
     END

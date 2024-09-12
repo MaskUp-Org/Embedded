@@ -6,6 +6,7 @@
  */
 
 #include "ESP_32.h"
+#include "FileReader.h"
 
 namespace MaskUP
 {
@@ -27,9 +28,18 @@ void ESP_32::setDeviceName(const String& inDeviceName)
 {
     Serial.println("Enter function : ESP_32::setDeviceName");
     m_deviceName = inDeviceName;
+    ::MaskUP::Tools::setDeviceName("/DeviceName", inDeviceName);
     Serial.println("Device name set to : " + inDeviceName);
     Serial.println("Left function : ESP_32::setDeviceName");
 
+}
+
+void ESP_32::resetDevice()
+{
+    Serial.println("Enter function : ESP_32::resetDevice");
+    ::MaskUP::Tools::resetDeviceName();
+    ::MaskUP::Tools::resetDeviceVersion();
+    Serial.println("Left function : ESP_32::resetDevice");
 }
 
 String ESP_32::getDeviceVersion()
@@ -44,6 +54,7 @@ void ESP_32::setDeviceVersion(const String& inDeviceVersion)
 {
     Serial.println("Enter function : ESP_32::setDeviceVersion");
     m_version.setVersion(inDeviceVersion);
+    ::MaskUP::Tools::setDeviceVersion("/DeviceVersion", inDeviceVersion);
     Serial.println("Device version set to : " + inDeviceVersion);
     Serial.println("Left function : ESP_32::setDeviceVersion");
 }

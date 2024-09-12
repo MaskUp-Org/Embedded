@@ -127,5 +127,5 @@ void loop()
     interrupts();
     pStateMachine->clearQueue();
     // Serial.println("checkBattery");
-    pStateMachine->checkBattery();
+    // pStateMachine->checkBattery();
 }

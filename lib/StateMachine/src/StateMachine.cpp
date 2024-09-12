@@ -73,8 +73,6 @@ void StateMachine::clearQueue()
             switch (val)
             {
             case ::MaskUP::Enum::ReturnValue::OK:
-                //Everything worked well, just clear the queue now
-                m_emergencyRequest.erase(m_emergencyRequest.begin());
                 if (m_emergencyRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_BATTERY_PERCENTAGE
                     && m_emergencyRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_DEVICE_NAME
                     && m_emergencyRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_DEVICE_VERSION
@@ -83,6 +81,8 @@ void StateMachine::clearQueue()
                 {
                     m_pResponseManager->processRequestResponse(val);
                 }
+                //Everything worked well, just clear the queue now
+                m_emergencyRequest.erase(m_emergencyRequest.begin());
                 break;
                 // If anything bad happens, we need to return one of those Return values, and manage it correctly
             case ::MaskUP::Enum::ReturnValue::ERROR_OCCURED:
@@ -106,6 +106,14 @@ void StateMachine::clearQueue()
             switch (val)
             {
             case ::MaskUP::Enum::ReturnValue::OK:
+                if (m_standardRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_BATTERY_PERCENTAGE
+                    && m_standardRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_DEVICE_NAME
+                    && m_standardRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_DEVICE_VERSION
+                    && m_standardRequest.begin()->m_request != ::MaskUP::Enum::Request::GET_POSITION
+                    )
+                {
+                    m_pResponseManager->processRequestResponse(val);
+                }
                 //Everything good, just clear the queue
                 m_standardRequest.erase(m_standardRequest.begin());
                 break;
@@ -182,7 +190,6 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
     switch (inRequest.m_Component)
     {
     case ::MaskUP::Enum::Component::ESP_32:
-        Serial.println("Request = " + ::MaskUP::Enum::fromRequestToString(inRequest.m_request));
         res = esp32Actions(inRequest.m_request, inRequest.m_str);
         break;
     case ::MaskUP::Enum::Component::LEFTVIBRATOR:
@@ -218,9 +225,14 @@ bool StateMachine::isAllowed(const ::MaskUP::Enum::Component inComponent)
         && m_pEsp32->componentIsReady()
         )
     {
-        Serial.println("Request : " + ::MaskUP::Enum::fromRequestToString(inRequest));
         switch (inRequest)
         {
+        case ::MaskUP::Enum::Request::RESET:
+            Serial.println("Case : Reset");
+            m_pEsp32->resetDevice();
+            m_pResponseManager->processRequestResponse(::MaskUP::Enum::ReturnValue::OK);
+            ret = ::MaskUP::Enum::ReturnValue::OK;
+            break;
         case ::MaskUP::Enum::Request::CHANGE_DEVICE_NAME:
             Serial.println("Case : Change Device Name");
             m_pEsp32->setDeviceName(inString);

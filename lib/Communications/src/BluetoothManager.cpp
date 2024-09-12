@@ -87,7 +87,7 @@ void BluetoothManager::manageBluetoothData()
 
 void BluetoothManager::processIncomingData(String message)
 {
-    Serial.println("processIncomingData");
+    Serial.println("Enter function : BluetoothManager::processIncomingData");
     // Messages :
     //      CMD:DIRECTION:LEFT             RSP:OK                   RSP:ERROR_OCCURED
     //      CMD:DIRECTION:RIGHT            RSP:OK                   RSP:COMPONENT_NOT_FOUND
@@ -105,6 +105,7 @@ void BluetoothManager::processIncomingData(String message)
     if (message.length() == 0)
     {
         Serial.println("Message invalide");
+        Serial.println("Left function : BluetoothManager::processIncomingData");
         return;
     }
 
@@ -118,9 +119,6 @@ void BluetoothManager::processIncomingData(String message)
 
     ::MaskUP::Enum::Type type = ::MaskUP::Enum::typeFromString(stringType);
     ::MaskUP::Enum::Action action = ::MaskUP::Enum::actionFromString(stingAction);
-
-    Serial.println("processIncomingData::Passed parcing - stringAction =" + stingAction + "-- String from Action =" + ::MaskUP::Enum::stringFromAction(action));
-
 
     if (type == ::MaskUP::Enum::Type::COMMAND)
     {
@@ -167,6 +165,11 @@ void BluetoothManager::processIncomingData(String message)
             request(::MaskUP::Enum::Component::ESP_32, ::MaskUP::Enum::Request::CHANGE_DEVICE_VERSION, value);
             break;
         }
+        case ::MaskUP::Enum::Action::RESET:
+        {
+            request(::MaskUP::Enum::Component::ESP_32, ::MaskUP::Enum::Request::RESET);
+            break;
+        }
         case ::MaskUP::Enum::Action::UNKNOWN:
         default:
             request(::MaskUP::Enum::Component::UNKNOWN, ::MaskUP::Enum::Request::UNKNOWN);
@@ -180,7 +183,6 @@ void BluetoothManager::processIncomingData(String message)
         switch (action)
         {
         case ::MaskUP::Enum::Action::GET_DEVICE_NAME:
-            Serial.println("processIncomingData::Query::get_device_name");
             request(Enum::Component::ESP_32, Enum::Request::GET_DEVICE_NAME);
             break;
         case ::MaskUP::Enum::Action::GET_BATTERY_PERCENTAGE:
@@ -199,12 +201,13 @@ void BluetoothManager::processIncomingData(String message)
         }
     }
     // m_pStateMachine->unlock();
-
+    Serial.println("Left function : BluetoothManager::processIncomingData");
 }
 
 
 void BluetoothManager::processNotOkResponse(::MaskUP::Enum::ReturnValue inReturnValue)
 {
+    Serial.println("Enter function : BluetoothManager::processNotOkResponse");
     String response = "RSP:UNKNOWN";
     switch (inReturnValue)
     {
@@ -236,10 +239,12 @@ void BluetoothManager::processNotOkResponse(::MaskUP::Enum::ReturnValue inReturn
     }
     sendData(response);
     return;
+    Serial.println("Left function : BluetoothManager::processNotOkResponse");
 }
 
 void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inReturnValue)
 {
+    Serial.println("Enter function : BluetoothManager::processRequestResponse");
     if (inReturnValue == ::MaskUP::Enum::ReturnValue::OK)
     {
         String response = "RSP:OK";
@@ -252,6 +257,7 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
     }
 
     return;
+    Serial.println("Left function : BluetoothManager::processRequestResponse");
 }
 
 void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inReturnValue, ::MaskUP::Enum::Request inRequest, String value)
@@ -285,6 +291,7 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
 
 void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inReturnValue, ::MaskUP::Enum::Request inRequest, uint32_t value)
 {
+    Serial.println("Enter function : BluetoothManager::processRequestResponse");
     if (inReturnValue == ::MaskUP::Enum::ReturnValue::OK)
     {
         String response = "RSP:UNKNOWN";
@@ -307,11 +314,11 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
     {
         processNotOkResponse(inReturnValue);
     }
+    Serial.println("Left function : BluetoothManager::processRequestResponse");
 }
 
 void BluetoothManager::sendData(String data)
 {
-
     Serial.println("Message va être envoyé" + data);
     SerialBT.println(data);
     Serial.println("Message envoyé : " + data);
