@@ -19,5 +19,21 @@ enum class Side
     END
 
 };
+
+inline String fromSideToString(const Side inSide)
+{
+    switch (inSide)
+    {
+    case Side::UNKNOWN:
+        return "UNKNOWN";
+    case Side::LEFT:
+        return "LEFT";
+    case Side::RIGHT:
+        return "RIGHT";
+    case Side::END:
+    default:
+        return "END";
+    }
+}
 }
 }

@@ -8,7 +8,9 @@
 
 #include <memory>
 #include <vector>
+#include <mutex>
 #include <Arduino.h>
+
 
 #include "BCHeadphone.h"
 #include "Battery.h"
@@ -26,6 +28,9 @@ namespace StateMachine
 class StateMachine
 {
 public:
+
+    StateMachine();
+
     void changeState(const ::MaskUP::Enum::State inState);
 
     void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg, const ::MaskUP::Enum::Caller inCaller);
@@ -34,6 +39,19 @@ public:
     void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const String& inArg);
     void registerRequest(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest);
 
+    /**
+     * Clear all queues, prioritize the emergency queue
+     */
+    void clearQueue();
+
+    void setupQueues();
+
+    void checkBattery();
+
+    void lock();
+
+    void unlock();
+
 private:
     /**
      * Verify if the component is allowed to ask for a state changement
@@ -41,10 +59,6 @@ private:
     bool isAllowed(const ::MaskUP::Enum::Component inComponent);
 
     ::MaskUP::Enum::ReturnValue act(const ::MaskUP::StateMachine::Request& inRequest);
-    /**
-     * Clear all queues, prioritize the emergency queue
-     */
-    void clearQueue();
 
     ::MaskUP::Enum::ReturnValue esp32Actions(const ::MaskUP::Enum::Request inRequest, const String& inString);
 
@@ -54,9 +68,11 @@ private:
 
     ::MaskUP::Enum::ReturnValue allVibratorsActions(const ::MaskUP::Enum::Request inRequest);
 
-    ::MaskUP::Enum::ReturnValue servoMotorActions();
+    ::MaskUP::Enum::ReturnValue servoMotorActions(const ::MaskUP::Enum::Position inPosition);
 
     ::MaskUP::Enum::ReturnValue batteryActions();
+
+    ::MaskUP::StateMachine::Request emptyRequest();
 
 
 
@@ -74,10 +90,12 @@ private:
     std::vector<::MaskUP::StateMachine::Request> m_standardRequest;
     std::vector<::MaskUP::StateMachine::Request> m_emergencyRequest;
 
-    std::shared_ptr<::MaskUP::Enum::State> m_pState;
+    ::MaskUP::Enum::State m_state;
     std::shared_ptr<::MaskUP::Communication::IResponse>m_pResponseManager;
     std::vector<::MaskUP::Enum::Component> m_allowedComponentsToRequest;
     std::vector<::MaskUP::Enum::Component> m_requiredComponentsToStart;
+    std::mutex m_mtx;
+
 
 public:
     void setRequiredComponentsToStart();

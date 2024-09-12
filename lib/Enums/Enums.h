@@ -4,6 +4,7 @@
 #include "Caller.hpp"
 #include "Component.hpp"
 #include "FileType.hpp"
+#include "Pins.hpp"
 #include "Position.hpp"
 #include "Priority.hpp"
 #include "Request.hpp"

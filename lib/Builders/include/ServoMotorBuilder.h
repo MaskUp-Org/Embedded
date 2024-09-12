@@ -23,6 +23,11 @@ class ServoMotorBuilder : public IBuilder <::MaskUP::Component::ServoMotor>
 public:
     virtual ServoMotorBuilder* reset() override;
     ServoMotorBuilder* assignDefaultPosition(const ::MaskUP::Enum::Position inPosition);
+    ServoMotorBuilder* setFrequency();
+    ServoMotorBuilder* setResolution();
+    ServoMotorBuilder* setId();
+    ServoMotorBuilder* setPin();
+    ServoMotorBuilder* setup();
 
     virtual std::unique_ptr <::MaskUP::Component::ServoMotor> build() override;
 

@@ -10,8 +10,7 @@
 #include "Vibrator.h"
 #include "IBuilder.h"
 #include "needed.hpp"
-#include "Side.hpp"
-
+#include "Enums.h"
 #include <memory>
 
 namespace MaskUP
@@ -23,6 +22,7 @@ class VibratorBuilder : public IBuilder <::MaskUP::Component::Vibrator>
 public:
     virtual VibratorBuilder* reset() override;
     VibratorBuilder* assignSide(const ::MaskUP::Enum::Side inSide);
+    VibratorBuilder* setup(const int inPin);
 
     virtual std::unique_ptr <::MaskUP::Component::Vibrator> build() override;
 

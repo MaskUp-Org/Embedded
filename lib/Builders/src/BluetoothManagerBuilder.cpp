@@ -16,6 +16,11 @@ namespace MaskUP
 namespace Build
 {
 
+BluetoothManagerBuilder* BluetoothManagerBuilder::buildStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
+{
+    m_pBluetoothManager->registerStateMachine(inpStateMachine);
+    return this;
+}
 BluetoothManagerBuilder* BluetoothManagerBuilder::reset()
 {
     m_pBluetoothManager = ::MaskUP::Tools::make_unique <::MaskUP::Communication::BluetoothManager>();

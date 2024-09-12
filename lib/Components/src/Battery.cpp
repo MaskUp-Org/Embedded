@@ -14,16 +14,19 @@ namespace Component
 
 void Battery::setup(uint8_t inPin, uint8_t inMode)
 {
-    (void)inPin;
-    (void)inMode;
-    std::cout << "BCHeadphone::run.\n";
+    pinMode(inPin, inMode);
 }
 
-// void EmergencyButton::registerStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
-// {
-//     m_pStateMachine = inpStateMachine;
-// }
 
+int Battery::getBatteryPercentage()
+{
+    Serial.println("Enter function : Battery::getBatteryPercentage");
+    float v_mes = analogRead(35);
+    float v_dc = 1.435 * (v_mes / 4095) * 3.3;
+    int ret = static_cast<int> (round(v_dc));
+    Serial.println("Left function : Battery::getBatteryPercentage");
+    return ret;
+}
 
 }
 }

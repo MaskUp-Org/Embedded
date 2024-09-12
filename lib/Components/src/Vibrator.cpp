@@ -22,26 +22,35 @@ void Vibrator::setup(uint8_t inPin, uint8_t inMode)
 {
     pinMode(inPin, inMode);
     m_pin = inPin;
+    run();
+    delay(500);
+    stop();
     m_ready = true;
 }
 
 void Vibrator::run()
 {
-    digitalWrite(m_pin, HIGH);
-    Serial.println("Vibrator");
+    Serial.println("Enter function : Vibrator::run");
+    digitalWrite(m_pin, LOW);
+    Serial.println("Left function : Vibrator::run");
 }
 
 void Vibrator::stop()
 {
-    digitalWrite(m_pin, LOW);
+    Serial.println("Enter function : Vibrator::stop");
+    digitalWrite(m_pin, HIGH);
+    Serial.println("Left function : Vibrator::stop");
 }
 
 void Vibrator::setSide(const ::MaskUP::Enum::Side inSide)
 {
+    Serial.println("Enter function : Vibrator::setSide");
     if (inSide != ::MaskUP::Enum::Side::END || inSide != ::MaskUP::Enum::Side::UNKNOWN)
     {
         m_side = inSide;
+        Serial.println("Vibrator Side set to : " + ::MaskUP::Enum::fromSideToString(inSide));
     }
+    Serial.println("Left function : Vibrator::setSide");
 }
 
 }

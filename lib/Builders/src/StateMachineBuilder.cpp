@@ -16,6 +16,7 @@ namespace Build
 StateMachineBuilder* StateMachineBuilder::reset()
 {
     m_pStateMachine = ::MaskUP::Tools::make_unique <::MaskUP::StateMachine::StateMachine>();
+    m_pStateMachine->setupQueues();
     m_isReset = true;
     return this;
 }
@@ -54,6 +55,7 @@ StateMachineBuilder* StateMachineBuilder::buildLeftVibrator()
 {
     m_pStateMachine->m_pLeftVibrator = VibratorBuilder()
         .reset()
+        ->setup(::MaskUP::Enum::fromPinToInt(::MaskUP::Enum::Pin::LEFTVIBRATOR))
         ->assignSide(::MaskUP::Enum::Side::LEFT)
         ->build();
     return this;
@@ -63,6 +65,7 @@ StateMachineBuilder* StateMachineBuilder::buildRightVibrator()
 {
     m_pStateMachine->m_pRightVibrator = VibratorBuilder()
         .reset()
+        ->setup(::MaskUP::Enum::fromPinToInt(::MaskUP::Enum::Pin::RIGHTVIBRATOR))
         ->assignSide(::MaskUP::Enum::Side::RIGHT)
         ->build();
     return this;
@@ -90,7 +93,12 @@ StateMachineBuilder* StateMachineBuilder::buildServomotor()
 {
     m_pStateMachine->m_pServomotor = ServoMotorBuilder()
         .reset()
-        ->assignDefaultPosition(::MaskUP::Enum::Position::M1000)
+        ->setFrequency()
+        ->setId()
+        ->setPin()
+        ->setResolution()
+        ->setup()
+        ->assignDefaultPosition(::MaskUP::Enum::Position::M500)
         ->build();
     return this;
 }

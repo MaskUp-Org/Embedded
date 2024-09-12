@@ -48,7 +48,8 @@ void setup()
     uint32_t serialValue = 115200;
     //////////////////////////////////////////////////
     Serial.begin(serialValue);
-    Serial.println("Start");
+    Serial.println("Enter function : Main::setup");
+
     if (!LittleFS.begin()) {
         Serial.println("LittleFS cannot begin.");
     }
@@ -56,8 +57,6 @@ void setup()
         Serial.println("LittleFS begin.");
     }
     Serial.println("getDeviceInfos");
-
-    // String devicename = ::MaskUP::Tools::getDeviceInformation("/DeviceName");
 
     Serial.println("Build StateMachine");
     pStateMachine = ::MaskUP::Build::StateMachineBuilder()
@@ -88,33 +87,45 @@ void setup()
         Serial.println("EmergencyButton not found.");
     }
 
+    // Register to IRQs
     attachInterrupt(digitalPinToInterrupt(pEmergencyButton->getPin()), ebIrq, FALLING);
+
 
     Serial.println("Build BluetoothManager");
     pBluetoothManager = ::MaskUP::Build::BluetoothManagerBuilder()
         .reset()
         ->setup(serialValue)
+        ->buildStateMachine(pStateMachine)
         ->build();
     if (pBluetoothManager == nullptr)
     {
         Serial.println("BluetoothManager not found.");
     }
-
-}
-
-void loop()
-{
-    if (irqReq == true)
+    if (pBluetoothManager && pStateMachine)
     {
-        pEmergencyButton->run();
-        irqReq = false;
+        pStateMachine->addResponseManager(pBluetoothManager);
     }
 
     auto btManager = pBluetoothManager;
     std::thread bluetoothThread([btManager]() {
         btManager->loop();
         });
-
-    // Detach the thread to run independently
     bluetoothThread.detach();
+
+    Serial.println("Left function : Main::setup");
+}
+
+void loop()
+{
+
+    noInterrupts();
+    if (irqReq == true)
+    {
+        pEmergencyButton->run();
+        irqReq = false;
+    }
+    interrupts();
+    pStateMachine->clearQueue();
+    // Serial.println("checkBattery");
+    pStateMachine->checkBattery();
 }

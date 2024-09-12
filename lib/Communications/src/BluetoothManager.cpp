@@ -1,9 +1,12 @@
 #include "BluetoothManager.h"
 #include "Enums.h"
+#include <mutex>
+#include <thread>
 namespace MaskUP
 {
 namespace Communication
 {
+std::mutex btMutex;
 
 BluetoothManager::BluetoothManager() :
     ICommunication()
@@ -16,38 +19,75 @@ void BluetoothManager::setup(const uint32_t inSerial, const String& inBTDeviceNa
     // 115200
     Serial.begin(inSerial);
     SerialBT.begin(inBTDeviceName);
+    Serial.println(inBTDeviceName);
 
     Serial.println("Bluetooth prêt");
 }
 
 void BluetoothManager::loop()
 {
-    Serial.println("Bluetooth");
-
-    if (SerialBT.available())
+    while ("MaskUp")
     {
-        manageBluetoothData();
+        if (SerialBT.available())
+        {
+            manageBluetoothData();
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
 
+bool BluetoothManager::isAQryCmd(const String& inData)
+{
+    int firstColon = inData.indexOf(':');
+    int secondColon = inData.indexOf(':', firstColon + 1);
+
+    String stringType = inData.substring(0, firstColon);
+    String stingAction = (secondColon != -1) ? inData.substring(firstColon + 1, secondColon) : inData.substring(firstColon + 1);
+    String value = (secondColon != -1) ? inData.substring(secondColon + 1) : "";
+
+    ::MaskUP::Enum::Type type = ::MaskUP::Enum::typeFromString(stringType);
+    ::MaskUP::Enum::Action action = ::MaskUP::Enum::actionFromString(stingAction);
+    if (type != ::MaskUP::Enum::Type::END
+        || type != ::MaskUP::Enum::Type::UNKNOWN
+        || action != ::MaskUP::Enum::Action::UNKNOWN
+        || action != ::MaskUP::Enum::Action::UNKNOWN
+        )
+    {
+        return true;
+
+    }
+    return false;
+}
 
 
 void BluetoothManager::manageBluetoothData()
 {
-
-    String incomingData = "";
+    // std::lock_guard<std::mutex> lock(btMutex);
+    static String incomingData = "";
 
     while (SerialBT.available())
     {
         char c = SerialBT.read();
-        incomingData += c;
+        if (c != '\n')
+        {
+            incomingData += c;
+        }
+        c = 0;
     }
-
-    processIncomingData(incomingData);
+    if (!incomingData.isEmpty() && isAQryCmd(incomingData))
+    {
+        Serial.print("Data received : ");
+        Serial.println(incomingData);
+        processIncomingData(incomingData);
+        incomingData.clear();
+    }
 }
+
+
 
 void BluetoothManager::processIncomingData(String message)
 {
+    Serial.println("processIncomingData");
     // Messages :
     //      CMD:DIRECTION:LEFT             RSP:OK                   RSP:ERROR_OCCURED
     //      CMD:DIRECTION:RIGHT            RSP:OK                   RSP:COMPONENT_NOT_FOUND
@@ -61,7 +101,6 @@ void BluetoothManager::processIncomingData(String message)
     //      QRY:GET_VERSION                RSP:OK:1.5.3
     //      QRY:GET_DEVICE_NAME            RSP:OK:MaskUP
 
-    // TODO: return UNKNOWN request
     if (message.length() == 0)
     {
         Serial.println("Message invalide");
@@ -73,10 +112,14 @@ void BluetoothManager::processIncomingData(String message)
 
     String stringType = message.substring(0, firstColon);
     String stingAction = (secondColon != -1) ? message.substring(firstColon + 1, secondColon) : message.substring(firstColon + 1);
+    stingAction.trim();
     String value = (secondColon != -1) ? message.substring(secondColon + 1) : "";
 
     ::MaskUP::Enum::Type type = ::MaskUP::Enum::typeFromString(stringType);
     ::MaskUP::Enum::Action action = ::MaskUP::Enum::actionFromString(stingAction);
+
+    Serial.println("processIncomingData::Passed parcing - stringAction =" + stingAction + "-- String from Action =" + ::MaskUP::Enum::stringFromAction(action));
+
 
     if (type == ::MaskUP::Enum::Type::COMMAND)
     {
@@ -97,6 +140,7 @@ void BluetoothManager::processIncomingData(String message)
         }
         case ::MaskUP::Enum::Action::SET_ALTITUDE:
         {
+            Serial.println("Request Value = " + value);
             Enum::Position position = Enum::positionFromString(value);
             request(Enum::Component::SERVOMOTOR, ::MaskUP::Enum::Request::CHANGE_POSITION, position, ::MaskUP::Enum::Caller::BLUETOOTH);
             break;
@@ -105,10 +149,10 @@ void BluetoothManager::processIncomingData(String message)
         {
 
             if (value == "LEFT")
-                request(Enum::Component::SERVOMOTOR, ::MaskUP::Enum::Request::RUN_VIBRATOR, ::MaskUP::Enum::Side::LEFT);
+                request(Enum::Component::LEFTVIBRATOR, ::MaskUP::Enum::Request::RUN_VIBRATOR, ::MaskUP::Enum::Side::LEFT);
 
             else if (value == "RIGHT")
-                request(Enum::Component::SERVOMOTOR, ::MaskUP::Enum::Request::RUN_VIBRATOR, ::MaskUP::Enum::Side::RIGHT);
+                request(Enum::Component::RIGHTVIBRATOR, ::MaskUP::Enum::Request::RUN_VIBRATOR, ::MaskUP::Enum::Side::RIGHT);
 
             break;
         }
@@ -127,17 +171,15 @@ void BluetoothManager::processIncomingData(String message)
             request(::MaskUP::Enum::Component::UNKNOWN, ::MaskUP::Enum::Request::UNKNOWN);
             break;
         }
-
-        {
-            Serial.println("Lecture de la musique");
-            // Exécutez l'action pour démarrer la musique
-        }
     }
-    else if (type == ::MaskUP::Enum::Type::COMMAND)
+    else if (type == ::MaskUP::Enum::Type::QUERY)
     {
+        Serial.println("processIncomingData::Query : " + static_cast<int>(action));
+
         switch (action)
         {
         case ::MaskUP::Enum::Action::GET_DEVICE_NAME:
+            Serial.println("processIncomingData::Query::get_device_name");
             request(Enum::Component::ESP_32, Enum::Request::GET_DEVICE_NAME);
             break;
         case ::MaskUP::Enum::Action::GET_BATTERY_PERCENTAGE:
@@ -151,10 +193,12 @@ void BluetoothManager::processIncomingData(String message)
             break;
         case ::MaskUP::Enum::Action::UNKNOWN:
         default:
-            request(::MaskUP::Enum::Component::UNKNOWN, ::MaskUP::Enum::Request::UNKNOWN);
+            Serial.println("Error occured.");
             break;
         }
     }
+    // m_pStateMachine->unlock();
+
 }
 
 
@@ -211,6 +255,7 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
 
 void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inReturnValue, ::MaskUP::Enum::Request inRequest, String value)
 {
+    Serial.println("Enter function : BluetoothManager::processRequestResponse");
     if (inReturnValue == ::MaskUP::Enum::ReturnValue::OK)
     {
         String response = "RSP:UNKNOWN";
@@ -234,6 +279,7 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
     {
         processNotOkResponse(inReturnValue);
     }
+    Serial.println("Left function : BluetoothManager::processRequestResponse");
 }
 
 void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inReturnValue, ::MaskUP::Enum::Request inRequest, uint32_t value)
@@ -264,6 +310,8 @@ void BluetoothManager::processRequestResponse(::MaskUP::Enum::ReturnValue inRetu
 
 void BluetoothManager::sendData(String data)
 {
+
+    Serial.println("Message va être envoyé" + data);
     SerialBT.println(data);
     Serial.println("Message envoyé : " + data);
     return;

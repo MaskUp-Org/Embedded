@@ -5,6 +5,7 @@
  */
 
 #pragma once
+#include <Arduino.h>
 
 #include <memory>
 #include "Enums.h"
@@ -16,6 +17,17 @@ namespace StateMachine
 class Request
 {
 public:
+    Request() :
+        m_Component(::MaskUP::Enum::Component::UNKNOWN),
+        m_request(::MaskUP::Enum::Request::UNKNOWN),
+        m_str(""),
+        m_i(0),
+        m_pos(::MaskUP::Enum::Position::UNKNOWN),
+        m_argType(::MaskUP::Enum::Args::UNKNOWN)
+    {
+
+    }
+
 
     ::MaskUP::Enum::Component m_Component;
     ::MaskUP::Enum::Request m_request;

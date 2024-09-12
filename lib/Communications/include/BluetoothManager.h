@@ -48,7 +48,7 @@ private:
     void processRequestResponse(Enum::ReturnValue inReturnValue, Enum::Request inRequest, uint32_t value) override;
 
     void sendData(String jsonDoc);
-
+    bool isAQryCmd(const String& inData);
     BluetoothSerial SerialBT;
 
 

@@ -24,6 +24,7 @@ public:
     virtual BluetoothManagerBuilder* reset() override;
 
     BluetoothManagerBuilder* setup(const uint32_t inSerial);
+    BluetoothManagerBuilder* buildStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine);
 
     virtual std::unique_ptr <::MaskUP::Communication::BluetoothManager> build() override;
 
@@ -31,6 +32,7 @@ private:
 
     std::unique_ptr <::MaskUP::Communication::BluetoothManager> m_pBluetoothManager;
     bool m_isReset;
+
 
 };
 }

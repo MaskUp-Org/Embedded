@@ -19,26 +19,33 @@ ESP_32::ESP_32() :
 
 String ESP_32::getDeviceName()
 {
-    Serial.println("getDeviceName");
+    Serial.println("Enter function : ESP_32::getDeviceName");
+    Serial.println("Left function : ESP_32::getDeviceName");
     return m_deviceName;
 }
 void ESP_32::setDeviceName(const String& inDeviceName)
 {
+    Serial.println("Enter function : ESP_32::setDeviceName");
     m_deviceName = inDeviceName;
-    Serial.println("SetDeviceName");
+    Serial.println("Device name set to : " + inDeviceName);
+    Serial.println("Left function : ESP_32::setDeviceName");
 
 }
 
 String ESP_32::getDeviceVersion()
 {
-    Serial.println("getDeviceVersion");
+    Serial.println("Enter function : ESP_32::getDeviceVersion");
+    Serial.println("Device version : " + m_version.getVersion());
+    Serial.println("Left function : ESP_32::getDeviceVersion");
     return m_version.getVersion();
 }
 
 void ESP_32::setDeviceVersion(const String& inDeviceVersion)
 {
-    Serial.println("SetDeviceVersion");
+    Serial.println("Enter function : ESP_32::setDeviceVersion");
     m_version.setVersion(inDeviceVersion);
+    Serial.println("Device version set to : " + inDeviceVersion);
+    Serial.println("Left function : ESP_32::setDeviceVersion");
 }
 bool ESP_32::componentIsReady()
 {

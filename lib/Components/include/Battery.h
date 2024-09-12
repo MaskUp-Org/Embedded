@@ -25,7 +25,9 @@ public:
      * @param inMode : INPUT or OUTPUT
      *
      */
-    virtual void setup(uint8_t inPin, uint8_t inMode) = 0;
+    virtual void setup(uint8_t inPin, uint8_t inMode);
+
+    int getBatteryPercentage();
 
 
 };

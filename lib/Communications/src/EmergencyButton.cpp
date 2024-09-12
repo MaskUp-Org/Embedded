@@ -37,19 +37,11 @@ void EmergencyButton::setup(uint8_t inPin, uint8_t inMode)
 
 void EmergencyButton::run()
 {
-    // Read the the button state
-    // int16_t currentButtonState = digitalRead(m_pin);
-
-    // if (m_lastButtonState == LOW && currentButtonState == HIGH)
-    // {
-        // too much enum, i know yes, but i really love enums
+    Serial.println("Enter function :: EmergencyButton::run");
+    // too much enum, i know yes, but i really love enums
     request(::MaskUP::Enum::Component::SERVOMOTOR, ::MaskUP::Enum::Request::CHANGE_POSITION, ::MaskUP::Enum::Position::M1000, ::MaskUP::Enum::Caller::EMERGENCYBUTTON);
+    Serial.println("Left function :: EmergencyButton::run");
 }
-
-// m_lastButtonState = currentButtonState;
-// }
-
-
 
 }
 }
