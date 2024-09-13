@@ -44,7 +44,6 @@ void ebIrq() {
 void setup()
 {
     //////////// Can modify those values /////////////
-    uint8_t emergencyButtonPin = 2;
     uint32_t serialValue = 115200;
     //////////////////////////////////////////////////
     Serial.begin(serialValue);
@@ -79,7 +78,7 @@ void setup()
 
     pEmergencyButton = ::MaskUP::Build::EmergencyButtonBuilder()
         .reset()
-        ->setup(emergencyButtonPin, INPUT_PULLUP)
+        ->setup(INPUT_PULLUP)
         ->buildStateMachine(pStateMachine)
         ->build();
     if (pEmergencyButton == nullptr)
