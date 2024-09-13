@@ -14,10 +14,10 @@ namespace Tools
 
 String Versioner::getVersion()
 {
-    String ret;
-    ret += m_major += String(".")
-        += m_minor += String(".")
-        += m_fix;
+    String ret = "";
+    ret = m_major + String(".")
+        + m_minor + String(".")
+        + m_fix;
     return ret;
 }
 

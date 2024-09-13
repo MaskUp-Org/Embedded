@@ -24,6 +24,8 @@ class ESP_32
 public:
     ESP_32();
     String getDeviceName();
+    String getDeviceVersion();
+    void resetDevice();
     void setDeviceName(const String& inDeviceName);
     void setDeviceVersion(const String& inDeviceVersion);
 

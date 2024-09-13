@@ -8,6 +8,7 @@
 #include "VibratorBuilder.h"
 #include <iostream>
 #include <Arduino.h>
+#include "FileReader.h"
 
 
 namespace MaskUP
@@ -19,6 +20,13 @@ VibratorBuilder* VibratorBuilder::reset()
 {
     m_pVibrator = ::MaskUP::Tools::make_unique <::MaskUP::Component::Vibrator>();
     m_isReset = true;
+
+    return this;
+}
+
+VibratorBuilder* VibratorBuilder::setup(const int inPin)
+{
+    m_pVibrator->setup(inPin, OUTPUT);
 
     return this;
 }

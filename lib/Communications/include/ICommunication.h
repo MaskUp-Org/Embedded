@@ -30,10 +30,10 @@ public:
     void request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const ::MaskUP::Enum::Position inArg, const ::MaskUP::Enum::Caller inCaller);
     void request(const ::MaskUP::Enum::Component inComponent, const ::MaskUP::Enum::Request inRequest, const String& inArg);
 
-    void setStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine);
+    void setStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine);
 
 
-private:
+protected:
     std::shared_ptr<::MaskUP::StateMachine::StateMachine> m_pStateMachine;
 };
 }

@@ -8,6 +8,7 @@
 #include "ServoMotorBuilder.h"
 #include <iostream>
 #include <Arduino.h>
+#include "FileReader.h"
 
 
 namespace MaskUP
@@ -22,6 +23,41 @@ ServoMotorBuilder* ServoMotorBuilder::reset()
 
     return this;
 }
+
+ServoMotorBuilder* ServoMotorBuilder::setup()
+{
+    m_pServoMotor->setup();
+    return this;
+}
+
+
+ServoMotorBuilder* ServoMotorBuilder::setFrequency()
+{
+    m_pServoMotor->setFrequency(::MaskUP::Enum::fromServomotorToInt(::MaskUP::Enum::Servomotor::SERVOFREQUENCY));
+    return this;
+}
+
+ServoMotorBuilder* ServoMotorBuilder::setResolution()
+{
+    m_pServoMotor->setResolution(::MaskUP::Enum::fromServomotorToInt(::MaskUP::Enum::Servomotor::SERVORESOLUTION));
+
+    return this;
+}
+
+ServoMotorBuilder* ServoMotorBuilder::setId()
+{
+    m_pServoMotor->setId(::MaskUP::Enum::fromServomotorToInt(::MaskUP::Enum::Servomotor::SERVOID));
+
+    return this;
+}
+
+ServoMotorBuilder* ServoMotorBuilder::setPin()
+{
+    m_pServoMotor->setPin(::MaskUP::Enum::fromPinToInt(::MaskUP::Enum::Pin::SERVOMOTOR));
+
+    return this;
+}
+
 
 ServoMotorBuilder* ServoMotorBuilder::assignDefaultPosition(const ::MaskUP::Enum::Position inPosition)
 {

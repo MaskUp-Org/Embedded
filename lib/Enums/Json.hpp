@@ -32,6 +32,7 @@ enum class Action {
     GET_VERSION,
     GET_ALTITUDE,
     GET_BATTERY_PERCENTAGE,
+    RESET,
 
 
     END
@@ -39,39 +40,75 @@ enum class Action {
 
 inline Action actionFromString(const String& inAction)
 {
-    if (inAction == "set_altitude")
+    if (inAction == "SET_ALTITUDE")
         return Action::SET_ALTITUDE;
-
-    else if (inAction == "direction")
+    else if (inAction == "DIRECTION")
         return Action::DIRECTION;
-    else if (inAction == "get_battery")
+    else if (inAction == "GET_BATTERY")
         return Action::GET_BATTERY_PERCENTAGE;
-    else if (inAction == "get_altitude")
+    else if (inAction == "GET_ALTITUDE")
         return Action::GET_ALTITUDE;
-    else if (inAction == "set_version")
+    else if (inAction == "SET_VERSION")
         return Action::SET_VERSION;
-    else if (inAction == "stop_sound")
+    else if (inAction == "STOP_SOUND")
         return Action::STOP_SOUND;
-    else if (inAction == "run_sound")
+    else if (inAction == "RUN_SOUND")
         return Action::RUN_SOUND;
-    else if (inAction == "set_device_name")
+    else if (inAction == "SET_DEVICE_NAME")
         return Action::SET_DEVICE_NAME;
-    else if (inAction == "get_device_name")
+    else if (inAction == "GET_DEVICE_NAME")
         return Action::GET_DEVICE_NAME;
-    else if (inAction == "get_version")
+    else if (inAction == "GET_VERSION")
         return Action::GET_VERSION;
 
     else
-        // We need to return a value
-        return Action::UNKNOWN;
+        Serial.println("Action = -" + inAction + "--");
+    // We need to return a value
+    return Action::UNKNOWN;
 }
+
+inline String stringFromAction(const Action inAction)
+{
+    switch (inAction)
+    {
+    case Action::DIRECTION:
+        return "DIRECTION";
+    case Action::GET_ALTITUDE:
+        return "GET_ALTITUDE";
+    case Action::GET_BATTERY_PERCENTAGE:
+        return "GET_BATTERY_PERCENTAGE";
+    case Action::GET_DEVICE_NAME:
+        return "GET_DEVICE_NAME";
+    case Action::GET_VERSION:
+        return "GET_VERSION";
+    case Action::RUN_SOUND:
+        return "RUN_SOUND";
+    case Action::SET_ALTITUDE:
+        return "SET_ALTITUDE";
+    case Action::SET_DEVICE_NAME:
+        return "SET_DEVICE_NAME";
+    case Action::SET_VERSION:
+        return "SET_VERSION";
+    case Action::STOP_SOUND:
+        return "STOP_SOUND";
+    case Action::END:
+        return "END";
+    case Action::UNKNOWN:
+        return "UNKNOWN";
+    default:
+        return "Not an defined action.";
+    }
+}
+
 
 inline Type typeFromString(const String& inType)
 {
-    if (inType == "command")
+    if (inType == "CMD")
         return Type::COMMAND;
-    else if (inType == "query")
+    else if (inType == "QRY")
+    {
         return Type::QUERY;
+    }
     else
         // We need to return a value
         return Type::UNKNOWN;

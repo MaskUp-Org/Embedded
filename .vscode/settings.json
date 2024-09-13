@@ -49,7 +49,12 @@
         "streambuf": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "thread": "cpp",
+        "chrono": "cpp",
+        "ratio": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
     },
     "cmake.ignoreCMakeListsMissing": true
 }

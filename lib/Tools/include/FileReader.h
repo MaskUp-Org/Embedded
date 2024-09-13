@@ -9,7 +9,7 @@
 
 #include <Arduino.h>
 #include <iostream>
-//#include <fstream>
+ //#include <fstream>
 #include "LittleFS.h"
 #include <string>
 
@@ -26,6 +26,11 @@ File getFile(const String& inFilePath);
  */
 String getDeviceInformation(const String& inDeviceInfo);
 
+void setDeviceName(const String& inDeviceInfo, const String& inData);
+void setDeviceVersion(const String& inDeviceInfo, const String& inData);
+
+void resetDeviceName();
+void resetDeviceVersion();
 
 }
 }
