@@ -22,8 +22,8 @@ class EmergencyButtonBuilder : public IBuilder <::MaskUP::Communication::Emergen
 {
 public:
     virtual EmergencyButtonBuilder* reset() override;
-    EmergencyButtonBuilder* setup(uint8_t inPin, uint8_t inMode);
-    EmergencyButtonBuilder *buildStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine);
+    EmergencyButtonBuilder* setup(uint8_t inMode);
+    EmergencyButtonBuilder* buildStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine);
 
     virtual std::unique_ptr <::MaskUP::Communication::EmergencyButton> build() override;
 

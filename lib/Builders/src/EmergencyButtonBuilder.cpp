@@ -23,13 +23,14 @@ EmergencyButtonBuilder* EmergencyButtonBuilder::reset()
     return this;
 }
 
-EmergencyButtonBuilder* EmergencyButtonBuilder::setup(uint8_t inPin, uint8_t inMode)
+EmergencyButtonBuilder* EmergencyButtonBuilder::setup(uint8_t inMode)
 {
-    m_pEmergencyButton->setup(inPin, inMode);
+    int pin = static_cast<int> (::MaskUP::Enum::Pin::EMERGENCYBUTTON);
+    m_pEmergencyButton->setup(pin, inMode);
     return this;
 }
 
-EmergencyButtonBuilder *EmergencyButtonBuilder::buildStateMachine (std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
+EmergencyButtonBuilder* EmergencyButtonBuilder::buildStateMachine(std::shared_ptr<::MaskUP::StateMachine::StateMachine> inpStateMachine)
 {
     m_pEmergencyButton->registerStateMachine(inpStateMachine);
     return this;
